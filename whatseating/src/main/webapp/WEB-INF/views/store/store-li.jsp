@@ -22,7 +22,7 @@
        	 	</thead>
        	 	<tbody>
 			<c:choose> 
-			<c:when test="${str.st_code eq '103' }">
+			<c:when test="${str.st_code eq '101' }">
 				<tr>
 					<td>${str.st_code}</td>
 		       	 	<td>${str.num}</td>

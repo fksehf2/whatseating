@@ -7,6 +7,6 @@ import com.test.one.plan.dto.PlanDto;
 
 public interface PlanDao {
 	
-	List<PlanDto> storeList(Map<String, Object> map);
-
+	public List<PlanDto> storeList(PlanDto dto); //글 목록 
+	public int getCount(PlanDto dto); //글의 갯수 
 }

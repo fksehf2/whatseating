@@ -7,19 +7,19 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.test.one.plan.service.PlanService;
 
 @Controller
-public class PlanController {
+public class CateController {
 
 
 @Autowired 
 private PlanService service;
 
-@RequestMapping("/store/test")
+@RequestMapping("/store/100")
 public String StoreList(HttpServletRequest request) {
 	
 	service.storeList(request);
 	
-	System.out.println("storeList 진입");
-	return "store/test";
+	System.out.println("cateList 진입");
+	return "store/100";
 }
 	
 
