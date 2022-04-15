@@ -1,15 +1,22 @@
 package com.test.one.plan.service;
 
 import java.net.URLEncoder;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.tomcat.util.json.JSONParser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 import com.test.one.plan.dao.PlanDao;
 import com.test.one.plan.dto.PlanDto;
 
@@ -90,15 +97,25 @@ public class PlanServiceImpl implements PlanService {
 			endPageNum=totalPageCount; //보정해 준다.
 			}
 		  //view page 에서 필요한 값을 request 에 담아준다. 
-			request.setAttribute("pageNum", pageNum);
-			request.setAttribute("startPageNum", startPageNum);
-			request.setAttribute("endPageNum", endPageNum);
-			request.setAttribute("condition", condition);
-			request.setAttribute("keyword", keyword);
-			request.setAttribute("encodedK", encodedK);
-			request.setAttribute("totalPageCount", totalPageCount);
-			request.setAttribute("list", list);
-			request.setAttribute("totalRow", totalRow);
-			}
+		request.setAttribute("pageNum", pageNum);
+		request.setAttribute("startPageNum", startPageNum);
+		request.setAttribute("endPageNum", endPageNum);
+		request.setAttribute("condition", condition);
+		request.setAttribute("keyword", keyword);
+		request.setAttribute("encodedK", encodedK);
+		request.setAttribute("totalPageCount", totalPageCount);
+		request.setAttribute("list", list);
+		request.setAttribute("totalRow", totalRow);
+	}
 
+	@Override
+	public List<Map<String, Object>> storeList2(PlanDto dto) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+
+
+	
 }

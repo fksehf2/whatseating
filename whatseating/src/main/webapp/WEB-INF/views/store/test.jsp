@@ -38,9 +38,8 @@ h2 { text-align: center; }
 </style>
 </head>
 <body>
-<jsp:include page="../header.jsp"></jsp:include>
-</br>
- 	<form action="/store/test" method="GET"> 
+<%@ include file="../header.jsp" %>
+<%--  	<form action="/store/test" method="GET"> 
      <section class="search section">
                  <div id="search_box">
                  <select class="form-select form-select-sm" name="condition" id="condition">
@@ -55,10 +54,10 @@ h2 { text-align: center; }
                              <button class="btn btn-primary btn-sm" type="submit" name="search" id="search_btn">검색</button>
                      </div>        
             </section>
-	</form>        
-	 <%@ include file="100.jsp" %>
-          <table class= "table">
-				<thead>
+	</form>  --%>       
+	 <%@ include file="test2.jsp" %>
+	          <table class= "table">
+<!--  				<thead>
         		<tr>
 	       	 		<th scope="col">매장코드</th>
 	       	 		<th scope="col">매장이름</th>
@@ -69,7 +68,7 @@ h2 { text-align: center; }
 					<th scope="col">마감시간</th>
 					<th scope="col">평점</th>
 	       	 	</tr>	
-      			</thead>
+      			</thead>  -->
       			<tbody>
       			<c:forEach items="${list}" var="str">
 				   <tr>

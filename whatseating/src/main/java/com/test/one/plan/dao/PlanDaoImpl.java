@@ -1,6 +1,8 @@
 package com.test.one.plan.dao;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +23,12 @@ public class PlanDaoImpl implements PlanDao {
 	@Override
 	public int getCount(PlanDto dto) {
 		return session.selectOne("store.getCount", dto);
+	}
+
+	@Override
+	public List<PlanDto> storeList2(Map map) {
+		// TODO Auto-generated method stub
+		return session.selectList("store.storeList2", map);
 	}
 
 }

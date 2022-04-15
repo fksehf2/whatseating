@@ -13,9 +13,9 @@ public class MemberDaoImpl  implements MemberDao{
 	 private SqlSession session;
 
 	@Override
-	public MemberDto getData2(String id) {
+	public MemberDto getData2(String CUST_ID) {
 		
-		 return session.selectOne("member.getData2", id);
+		 return session.selectOne("member.getData2", CUST_ID);
 	}
 
 	@Override

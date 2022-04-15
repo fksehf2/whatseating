@@ -50,10 +50,11 @@ public class MemberController {
 	public String loginCheck(MemberDto dto,HttpSession session) {
 		
 		boolean result = service.loginCheck(dto, session);
-		System.out.println(session);
-		System.out.println(dto);
+		System.out.println("id" +"--------"+ session.getAttribute("id"));
 		if(result) {
-			System.out.println(dto.getStatus());	
+			System.out.println("status" +"--------"+ dto.getCUST_STATUS());
+			System.out.println("id2"  +"--------"+ dto.getCUST_ID());
+			System.out.println("pw" +"--------"+ dto.getCUST_PW());
 		}else {	
 		}
 		
@@ -61,11 +62,12 @@ public class MemberController {
 	}
  
     //로그아웃 처리 
-    @RequestMapping("/logout")
-    public String logout(HttpSession session) {
+    @RequestMapping(value="logout.do", method=RequestMethod.POST)
+    @ResponseBody
+    public void logout(HttpSession session) {
        //세션에서 id 라는 키값으로 저장된 값 삭제 
        session.removeAttribute("id");
-       return "logout";
+       System.out.println("???");
     }
     
 

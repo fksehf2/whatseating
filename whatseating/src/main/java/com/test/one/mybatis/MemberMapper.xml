@@ -3,16 +3,16 @@
 
 <mapper namespace="member">
 
-<select id ="getData2" resultType="MemberDto">
-	  SELECT id, pw, status
-      FROM account_data
-      WHERE id=#{id}
+	<select id ="getData2" resultType="MemberDto">
+	  SELECT CUST_ID, CUST_PW, CUST_TYPE
+      FROM ACCOUNT_DATA
+      WHERE CUST_ID=#{CUST_ID}
 	</select>
 	
 <select id="loginCheck" resultType="String">
 		<![CDATA[
-			SELECT count(*) FROM account_data
-			WHERE id = #{id} AND pw = #{pw}
+			SELECT count(*) FROM ACCOUNT_DATA
+			WHERE CUST_ID = #{CUST_ID} AND CUST_PW = #{CUST_PW}
 		]]>
 	</select>
 	

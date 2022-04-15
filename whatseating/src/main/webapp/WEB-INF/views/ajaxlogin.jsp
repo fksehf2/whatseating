@@ -14,7 +14,7 @@
 function swalSuccess(seq){
 	Swal.fire({
 		title:'로그인 성공',
-		text: '${id }님, 로그인 되었습니다.',
+		text: '${CUST_ID }님, 로그인 되었습니다.',
 		icon: 'success',
 		confirmButtonColor: '#198754',
 		confirmButtonText: '확인'
@@ -41,7 +41,7 @@ function swalFail(seq){
 }
 </script>
 	<c:choose>
-		<c:when test="${not empty sessionScope.id }">
+		<c:when test="${not empty sessionScope.CUST_ID }">
 		<script>
 		swalSuccess();
 		</script>

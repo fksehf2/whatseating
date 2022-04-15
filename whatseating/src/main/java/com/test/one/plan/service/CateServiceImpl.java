@@ -20,10 +20,10 @@ public class CateServiceImpl implements CateService {
 	public void cateList(HttpServletRequest request) {
 		CateDto dto=new CateDto();
 		//글 목록 얻어오기 
-		  List<CateDto> list=dao.cateList(dto);
+		  List<CateDto> cateList=dao.cateList(dto);
 		
 		  //view page 에서 필요한 값을 request 에 담아준다. 
-			request.setAttribute("list", list);
+			request.setAttribute("cateList", cateList);
 
 			}
 

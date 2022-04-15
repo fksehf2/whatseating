@@ -41,23 +41,23 @@ h2 { text-align: center; }
 				<input type="hidden" name="url" value="${param.url }"/>
 			</c:otherwise>
 		</c:choose>
-		
+		<%-- <%@ include file="store/test.jsp" %> --%>
         <div>
-        <input type="radio" name="status" value="customer">
+        <input type="radio" name="CUST_STATUS" value="customer">
                               일반회원 
-        <input type="radio" name="status" value="owner">
+        <input type="radio" name="CUST_STATUS" value="owner">
                               점주
         </div>
         </br>
             <div>
             <input type="hidden" name="url" value="${url}"/>
             	<label class="control-label" for="id">id</label>	
-                <input class="form-control" type="text" id="id" name="id" placeholder="아이디" >
+                <input class="form-control" type="text" id="id" name="CUST_ID" placeholder="아이디" >
             </div>
 
             <div>
             	<label class="control-label" for="pwd">pw</label>	
-                <input class="form-control" type="password" id="pw" name="pw" placeholder="비밀번호">
+                <input class="form-control" type="password" id="pw" name="CUST_PW" placeholder="비밀번호">
             </div>
             </br>
             <div class="find_password">
@@ -77,7 +77,7 @@ const logBtn=document.querySelector('#logBtn');
 logBtn.addEventListener('click', ()=>{
 	const id=document.querySelector("#id").value;
 	const pw=document.querySelector("#pw").value;
-	const type=document.querySelector('input[name="status"]:checked').value;
+	const type=document.querySelector('input[name="CUST_STATUS"]:checked').value;
 	//console.log(type);
 	const logData={"id":id, "pw":pw, "type":type};
 	//console.log(logData);	

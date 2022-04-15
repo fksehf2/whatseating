@@ -24,6 +24,21 @@
 		]]>
 	</select>
 	
+	<select id="storeList2" parameterType="PlanDto" resultType="map">
+		SELECT *
+		FROM
+			(SELECT result1.*, ROWNUM AS rnum
+			FROM
+				(SELECT ST_CODE,ST_NAME,ST_ADDRESSBASIC,ST_ADDRESSDETAIL,
+				ST_ADDRESSEXTRA,ST_PHNO,ST_STARTTIME,ST_ENDTIME,ST_CONTENT,ST_AVGSCORE
+				FROM ST_DATA
+				<include refid="searchCondition"/>
+				ORDER BY ST_CODE DESC) result1)
+		<![CDATA[ 
+		WHERE rnum >= #{startRowNum} AND rnum <= #{endRowNum}
+		]]>
+	</select>
+	
 	<select id="getCount" parameterType="PlanDto" resultType="int">
 		SELECT NVL(MAX(ROWNUM), 0)
 		FROM ST_DATA

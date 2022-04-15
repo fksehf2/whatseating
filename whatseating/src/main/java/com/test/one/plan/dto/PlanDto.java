@@ -1,5 +1,7 @@
 package com.test.one.plan.dto;
 
+import java.util.Map.Entry;
+
 public class PlanDto {
 	private int ST_CODE; //매장코드
 	private String st_manager; //아이디 
@@ -170,6 +172,8 @@ public class PlanDto {
 		this.nextNum = nextNum;
 	}
 
-	
-	
+		
 }
+
+	
+	
