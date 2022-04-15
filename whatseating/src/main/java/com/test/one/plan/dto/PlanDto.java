@@ -1,145 +1,179 @@
 package com.test.one.plan.dto;
 
+import java.util.Map.Entry;
+
 public class PlanDto {
-	private int num; //번호
-	private int st_code; //매장코드
-	private String st_name; //매장이름
-	private String st_menu; //메뉴
-	private String st_content; //소개
-	private String st_addressNo; //주소1
-	private String st_addressBasic; //주소2
-	private String st_addressDetail; //주소3
-	private String st_addressExtra; //주소4
-	private String st_PHNO; //번호
-	private String st_startTime; //오픈
-	private String st_endTime; //마감
-	private String st_avgScore; //별점
+	private int ST_CODE; //매장코드
+	private String st_manager; //아이디 
+	private String ST_NAME; //매장이름
+	private String ST_ADDRESSNO; //매장 우편번호
+	private String ST_ADDRESSBASIC; //매장 주소 
+	private String ST_ADDRESSDETAIL; //주소 상세 
+	private String ST_ADDRESSEXTRA; //주소 나머지 
+	private String ST_PHNO; //매장 번호
+	private String ST_STARTTIME; //매장 시작시간 
+	private String ST_ENDTIME; //매장 마감시간
+	private String ST_CONTENT; //소개
+	private int ST_AVGSCORE; //매장 별점
+	private int startRowNum; //시작페이지
+	private int endRowNum; //마지막페이지
+	private int prevNum; //하단 시작페이지
+	private int nextNum; //하단 마지막페이지 
 	
 	public PlanDto() {}
 
-	public PlanDto(int num, int st_code, String st_name, String st_menu, String st_content, String st_addressNo,
-			String st_addressBasic, String st_addressDetail, String st_addressExtra, String st_PHNO,
-			String st_startTime, String st_endTime, String st_avgScore) {
+	public PlanDto(int sT_CODE, String st_manager, String sT_NAME, String sT_ADDRESSNO, String sT_ADDRESSBASIC,
+			String sT_ADDRESSDETAIL, String sT_ADDRESSEXTRA, String sT_PHNO, String sT_STARTTIME, String sT_ENDTIME,
+			String sT_CONTENT, int sT_AVGSCORE, int startRowNum, int endRowNum, int prevNum, int nextNum) {
 		super();
-		this.num = num;
-		this.st_code = st_code;
-		this.st_name = st_name;
-		this.st_menu = st_menu;
-		this.st_content = st_content;
-		this.st_addressNo = st_addressNo;
-		this.st_addressBasic = st_addressBasic;
-		this.st_addressDetail = st_addressDetail;
-		this.st_addressExtra = st_addressExtra;
-		this.st_PHNO = st_PHNO;
-		this.st_startTime = st_startTime;
-		this.st_endTime = st_endTime;
-		this.st_avgScore = st_avgScore;
+		ST_CODE = sT_CODE;
+		this.st_manager = st_manager;
+		ST_NAME = sT_NAME;
+		ST_ADDRESSNO = sT_ADDRESSNO;
+		ST_ADDRESSBASIC = sT_ADDRESSBASIC;
+		ST_ADDRESSDETAIL = sT_ADDRESSDETAIL;
+		ST_ADDRESSEXTRA = sT_ADDRESSEXTRA;
+		ST_PHNO = sT_PHNO;
+		ST_STARTTIME = sT_STARTTIME;
+		ST_ENDTIME = sT_ENDTIME;
+		ST_CONTENT = sT_CONTENT;
+		ST_AVGSCORE = sT_AVGSCORE;
+		this.startRowNum = startRowNum;
+		this.endRowNum = endRowNum;
+		this.prevNum = prevNum;
+		this.nextNum = nextNum;
 	}
 
-	public int getNum() {
-		return num;
+	public int getST_CODE() {
+		return ST_CODE;
 	}
 
-	public void setNum(int num) {
-		this.num = num;
+	public void setST_CODE(int sT_CODE) {
+		ST_CODE = sT_CODE;
 	}
 
-	public int getSt_code() {
-		return st_code;
+	public String getSt_manager() {
+		return st_manager;
 	}
 
-	public void setSt_code(int st_code) {
-		this.st_code = st_code;
+	public void setSt_manager(String st_manager) {
+		this.st_manager = st_manager;
 	}
 
-	public String getSt_name() {
-		return st_name;
+	public String getST_NAME() {
+		return ST_NAME;
 	}
 
-	public void setSt_name(String st_name) {
-		this.st_name = st_name;
+	public void setST_NAME(String sT_NAME) {
+		ST_NAME = sT_NAME;
 	}
 
-	public String getSt_menu() {
-		return st_menu;
+	public String getST_ADDRESSNO() {
+		return ST_ADDRESSNO;
 	}
 
-	public void setSt_menu(String st_menu) {
-		this.st_menu = st_menu;
+	public void setST_ADDRESSNO(String sT_ADDRESSNO) {
+		ST_ADDRESSNO = sT_ADDRESSNO;
 	}
 
-	public String getSt_content() {
-		return st_content;
+	public String getST_ADDRESSBASIC() {
+		return ST_ADDRESSBASIC;
 	}
 
-	public void setSt_content(String st_content) {
-		this.st_content = st_content;
+	public void setST_ADDRESSBASIC(String sT_ADDRESSBASIC) {
+		ST_ADDRESSBASIC = sT_ADDRESSBASIC;
 	}
 
-	public String getSt_addressNo() {
-		return st_addressNo;
+	public String getST_ADDRESSDETAIL() {
+		return ST_ADDRESSDETAIL;
 	}
 
-	public void setSt_addressNo(String st_addressNo) {
-		this.st_addressNo = st_addressNo;
+	public void setST_ADDRESSDETAIL(String sT_ADDRESSDETAIL) {
+		ST_ADDRESSDETAIL = sT_ADDRESSDETAIL;
 	}
 
-	public String getSt_addressBasic() {
-		return st_addressBasic;
+	public String getST_ADDRESSEXTRA() {
+		return ST_ADDRESSEXTRA;
 	}
 
-	public void setSt_addressBasic(String st_addressBasic) {
-		this.st_addressBasic = st_addressBasic;
+	public void setST_ADDRESSEXTRA(String sT_ADDRESSEXTRA) {
+		ST_ADDRESSEXTRA = sT_ADDRESSEXTRA;
 	}
 
-	public String getSt_addressDetail() {
-		return st_addressDetail;
+	public String getST_PHNO() {
+		return ST_PHNO;
 	}
 
-	public void setSt_addressDetail(String st_addressDetail) {
-		this.st_addressDetail = st_addressDetail;
+	public void setST_PHNO(String sT_PHNO) {
+		ST_PHNO = sT_PHNO;
 	}
 
-	public String getSt_addressExtra() {
-		return st_addressExtra;
+	public String getST_STARTTIME() {
+		return ST_STARTTIME;
 	}
 
-	public void setSt_addressExtra(String st_addressExtra) {
-		this.st_addressExtra = st_addressExtra;
+	public void setST_STARTTIME(String sT_STARTTIME) {
+		ST_STARTTIME = sT_STARTTIME;
 	}
 
-	public String getSt_PHNO() {
-		return st_PHNO;
+	public String getST_ENDTIME() {
+		return ST_ENDTIME;
 	}
 
-	public void setSt_PHNO(String st_PHNO) {
-		this.st_PHNO = st_PHNO;
+	public void setST_ENDTIME(String sT_ENDTIME) {
+		ST_ENDTIME = sT_ENDTIME;
 	}
 
-	public String getSt_startTime() {
-		return st_startTime;
+	public String getST_CONTENT() {
+		return ST_CONTENT;
 	}
 
-	public void setSt_startTime(String st_startTime) {
-		this.st_startTime = st_startTime;
+	public void setST_CONTENT(String sT_CONTENT) {
+		ST_CONTENT = sT_CONTENT;
 	}
 
-	public String getSt_endTime() {
-		return st_endTime;
+	public int getST_AVGSCORE() {
+		return ST_AVGSCORE;
 	}
 
-	public void setSt_endTime(String st_endTime) {
-		this.st_endTime = st_endTime;
+	public void setST_AVGSCORE(int sT_AVGSCORE) {
+		ST_AVGSCORE = sT_AVGSCORE;
 	}
 
-	public String getSt_avgScore() {
-		return st_avgScore;
+	public int getStartRowNum() {
+		return startRowNum;
 	}
 
-	public void setSt_avgScore(String st_avgScore) {
-		this.st_avgScore = st_avgScore;
+	public void setStartRowNum(int startRowNum) {
+		this.startRowNum = startRowNum;
 	}
+
+	public int getEndRowNum() {
+		return endRowNum;
+	}
+
+	public void setEndRowNum(int endRowNum) {
+		this.endRowNum = endRowNum;
+	}
+
+	public int getPrevNum() {
+		return prevNum;
+	}
+
+	public void setPrevNum(int prevNum) {
+		this.prevNum = prevNum;
+	}
+
+	public int getNextNum() {
+		return nextNum;
+	}
+
+	public void setNextNum(int nextNum) {
+		this.nextNum = nextNum;
+	}
+
+		
+}
 
 	
-
-}
+	

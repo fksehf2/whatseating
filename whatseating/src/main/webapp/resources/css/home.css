@@ -14,7 +14,7 @@ main {
 }
 
 
-.address_search #search_box {
+/* .address_search #search_box {
    	width: 50%;
 	height: 45px;
 	background: #F6F6F6;
@@ -22,39 +22,14 @@ main {
 	margin: 20px auto;
 	display:flex; 
 } 
-
+ */
 .address_search #search_box input {
-	font-size: 1.8rem;
+	font-size: 1.2rem;
 }
 
 .address_search #search_box > div:first-child {
 	width: 90%;
 }
-
-.address_search .search_btn {
-	width: 50px;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	margin-left: auto;
-}
-
-.address_search .search_btn i {
-	font-size: 1.8rem;
-	color: #999999;
-}
-
- .address_search #deleveryAddress2 {
-    height: 100%;
-    width: 100%;
-    padding-left: 10px;
-    border: none;
-    background: none;
- }
- 
- .address_search #search_btn {
-    display: none;
- }
 
 .category_box .box {
     max-width: 1000px;
@@ -81,7 +56,7 @@ main {
 }
 
 .category li .img_box {
-	width: 100%;
+	width: 90%;
 	height: 0;
 	padding-bottom: 100%;
 	position: relative;
@@ -90,19 +65,19 @@ main {
 }
 
 .category li .img_box img {
-	width: 100%;
-	height: 100%;
+	width: 90%;
+	height: 90%;
     position: absolute;
     object-fit: cover;
 	transition: 0.3s;
 }
 
 .category li .img_box img:hover {
-	transform: scale(1.05);
+	transform: scale(1.03);
 }
 .category li .name {
 	text-align: center;
-	font-size: 1.6rem;
+	font-size: 0.9rem;
 }
 
 

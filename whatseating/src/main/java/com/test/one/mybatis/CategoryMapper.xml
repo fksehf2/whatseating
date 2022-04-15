@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cate">
+
+	<sql id="searchCondition">
+  	 <if test="ST_NAME != null">
+   		WHERE ST_NAME LIKE '%'||#{ST_NAME}||'%'
+	 </if>
+	</sql>
+
+	<select id="cateList" parameterType="CateDto" resultType="CateDto">
+				SELECT CA_CODE,CA_NAME, ETC_1
+				FROM CATEGORY
+				ORDER BY CA_CODE ASC
+	</select>
+	
+	
+</mapper>

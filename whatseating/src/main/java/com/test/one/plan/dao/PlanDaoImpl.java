@@ -1,5 +1,6 @@
 package com.test.one.plan.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -12,11 +13,22 @@ import com.test.one.plan.dto.PlanDto;
 @Repository
 public class PlanDaoImpl implements PlanDao {
 	@Autowired
-	private SqlSession sql;
+	private SqlSession session;
 
 	@Override
-	public List<PlanDto> storeList(Map<String, Object> map) {
-		return sql.selectList("store.storeList", map);
+	public List<PlanDto> storeList(PlanDto dto) {
+		return session.selectList("store.storeList", dto);
+	}
+
+	@Override
+	public int getCount(PlanDto dto) {
+		return session.selectOne("store.getCount", dto);
+	}
+
+	@Override
+	public List<PlanDto> storeList2(Map map) {
+		// TODO Auto-generated method stub
+		return session.selectList("store.storeList2", map);
 	}
 
 }
