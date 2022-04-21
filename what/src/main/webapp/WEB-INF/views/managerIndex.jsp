@@ -332,10 +332,10 @@
 									<c:forEach begin="1" end="24" var="i">
 										<c:choose>
 											<c:when test="${i <= 9}">
-												<option value="${i}">0<c:out value="${i}" />:00</option>
+												<option value="0${i}:00">0<c:out value="${i}" />:00</option>
 											</c:when>
 											<c:otherwise>
-												<option value="${i}"><c:out value="${i}" />:00</option>
+												<option value="${i}:00"><c:out value="${i}" />:00</option>
 											</c:otherwise>
 										</c:choose>
 									</c:forEach>
@@ -344,10 +344,10 @@
 									<c:forEach begin="1" end="24" var="i">
 										<c:choose>
 											<c:when test="${i <= 9}">
-												<option value="${i}">0<c:out value="${i}" />:00</option>
+												<option value="0${i}:00">0<c:out value="${i}" />:00</option>
 											</c:when>
 											<c:otherwise>
-												<option value="${i}"><c:out value="${i}" />:00</option>
+												<option value="${i}:00"><c:out value="${i}" />:00</option>
 											</c:otherwise>
 										</c:choose>
 									</c:forEach>
@@ -383,7 +383,7 @@
                   </span>
              </div>
             <div class="member-check-table">
-            	<form action="modifyPic" method="post" id="menuPicForm" enctype="multipart/form-data">
+            	<form action="" method="post" id="menuPicForm" enctype="multipart/form-data">
             		<input type="hidden" name="MENU_NUM" value="">
             		<table>
 						<colgroup>
@@ -400,8 +400,8 @@
 						</tr>
 					</table>
             	</form>
-           		<form action="menuModify" method="post" id="menuDetailForm" onsubmit="return chkform2();">
-           		
+            	
+           		<form action="" method="post" id="menuDetailForm">
            		<!-- value에 세션 값을 넣을 수 있도록 함 -->
            		<input type="hidden" name="MENU_NUM" value="">
 					<table>
@@ -429,9 +429,9 @@
 					</table>
 					<div class="btns">
 						<button type="button" class="btn btn-outline-success" id="menuPicModifyBtn">사진 수정</button>
-						<button type="submit" class="btn btn-outline-success" id="menuPicUpdateBtn">사진 수정 완료</button>
+						<button type="button" class="btn btn-outline-success" id="menuPicUpdateBtn">사진 수정 완료</button>
 						<button type="button" class="btn btn-outline-success" id="menuModifyBtn">메뉴 수정</button>
-						<button type="submit" class="btn btn-outline-success" id="menuUpdateBtn">메뉴 수정 완료</button>
+						<button type="button" class="btn btn-outline-success" id="menuUpdateBtn">메뉴 수정 완료</button>
 						<button type="button" class="btn btn-outline-danger" id="menuDeleteBtn">삭제</button>
 					</div>
 				</form>
@@ -520,7 +520,7 @@ function chkform(){
 	}
 }
 
-function chkform2(){
+/* function chkform2(){
 	var menu_name = $("#MENU_NAME").val();
 	var menu_price = $("#MENU_PRICE").val();
 	var menu_content = $("#MENU_CONTENT").val();
@@ -538,7 +538,7 @@ function chkform2(){
 		$("#MENU_CONTENT").focus();
 		return false;
 	}
-}
+} */
 
 </script>
 </body>

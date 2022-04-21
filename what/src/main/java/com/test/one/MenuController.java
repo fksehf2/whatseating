@@ -73,7 +73,7 @@ public class MenuController {
 //				return map;
 //	}
 	
-	//사진 파일 저장
+	//사진 파일 저장, 메뉴 등록
 	@ResponseBody
 	@RequestMapping("savePic")
 	public Map<String, Object> savePic(@RequestParam("image") MultipartFile[] files, @ModelAttribute MenuDTO menuDTO, HttpServletRequest request) throws Exception, IOException {
@@ -93,7 +93,7 @@ public class MenuController {
 		// 파일 업로드, 다운로드의 기본 개념
 		// 파일 위치 경로를 db에 넣어 불러올 수 있도록 하고, 실제로 폴더를 만들어 넣음
 		String realPath = servletContext.getRealPath("/resources/upload");
-		String today = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
+		String today = new SimpleDateFormat("yyyyMMDD").format(new Date());
 		String saveFolder = realPath + today;
 		System.out.println(saveFolder);
 		
@@ -139,62 +139,77 @@ public class MenuController {
 		return map;
 	}
 	
-	
-	//사진 파일 저장
-		@ResponseBody
-		@RequestMapping("modifyPic")
-		public Map<String, Object> modifyPic(@RequestParam("modifyImg") MultipartFile[] files, @RequestParam("MENU_NUM") int MENU_NUM) throws Exception, IOException {
-			
-			Map<String, Object> map = new HashMap<String, Object>();
-			
-			// 파일 업로드, 다운로드의 기본 개념
-			// 파일 위치 경로를 db에 넣어 불러올 수 있도록 하고, 실제로 폴더를 만들어 넣음
-			String realPath = servletContext.getRealPath("/resources/upload");
-			String today = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
-			String saveFolder = realPath + today;
-			System.out.println(saveFolder);
-			
-			//경로에 파일이 있는지 확인 //없으면 파일을 만듬
-			File folder = new File(saveFolder);
-			if(!folder.exists()) {
-				folder.mkdir();
-			}
-			List<FileInfoDTO> fileInfos = new ArrayList<FileInfoDTO>();
-			for(MultipartFile picFile : files) {
-				FileInfoDTO fileInfoDTO = new FileInfoDTO();
-				String originalFileName = picFile.getOriginalFilename();
-				//파일명이 있다면
-				if(!originalFileName.isEmpty()) {
-					//파일명 중복을 막기 위해 UUID를 사용
-					//파일명은 확장자를 빼서 저장
-					String saveFileName = UUID.randomUUID().toString() + originalFileName.substring(originalFileName.lastIndexOf("."));
-					fileInfoDTO.setORIGINALFILE(originalFileName);
-					fileInfoDTO.setSAVEFILE(saveFileName);
-					fileInfoDTO.setSAVEFOLDER(today);
-					System.out.println(picFile.getOriginalFilename()+" "+saveFileName);
-					//transferTo로 파일 업로드 처리 (어느 폴더에, 어떤 이름으로)
-					picFile.transferTo(new File(folder,saveFileName));
-					
-					//파일을 담은 DTO를 배열로 저장
-					fileInfos.add(fileInfoDTO);
-				}
-			}
-			MenuDTO menuDTO = new MenuDTO();
-			menuDTO.setFILEINFOS(fileInfos);
-			menuDTO.setMENU_NUM(MENU_NUM);
-			
-			int updateResult = 0;
-			
-			//사진 파일이 저장이 잘 되었다면 db에 등록이 될 수 있도록 함
-			if(!fileInfos.isEmpty()) {
-				updateResult = menuSVC.menuPicModify(menuDTO);
-				map.put("updateResult", updateResult);
-			} else {
-				map.put("updateResult", 0);
-			}
-			
-			return map;
+	//사진만 저장
+	@ResponseBody
+	@RequestMapping("savePic2")
+	public Map<String, Object> savePic2(@RequestParam("image") MultipartFile[] files, @RequestParam("MENU_NUM") int MENU_NUM, @ModelAttribute MenuDTO menuDTO, HttpServletRequest request) throws Exception, IOException {
+		
+		//json문자열을 보내기 위함
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		// 파일 업로드, 다운로드의 기본 개념
+		// 파일 위치 경로를 db에 넣어 불러올 수 있도록 하고, 실제로 폴더를 만들어 넣음
+		String realPath = servletContext.getRealPath("/resources/upload");
+		String today = new SimpleDateFormat("yyyyMMdd").format(new Date());
+		String saveFolder = realPath + today;
+		System.out.println(saveFolder);
+		
+		//경로에 파일이 있는지 확인 //없으면 파일을 만듬
+		File folder = new File(saveFolder);
+		if(!folder.exists()) {
+			folder.mkdir();
 		}
+		List<FileInfoDTO> fileInfos = new ArrayList<FileInfoDTO>();
+		for(MultipartFile picFile : files) {
+			FileInfoDTO fileInfoDTO = new FileInfoDTO();
+			String originalFileName = picFile.getOriginalFilename();
+			//파일명이 있다면
+			if(!originalFileName.isEmpty()) {
+				//파일명 중복을 막기 위해 UUID를 사용
+				//파일명은 확장자를 빼서 저장
+				String saveFileName = UUID.randomUUID().toString() + originalFileName.substring(originalFileName.lastIndexOf("."));
+				fileInfoDTO.setORIGINALFILE(originalFileName);
+				fileInfoDTO.setSAVEFILE(saveFileName);
+				fileInfoDTO.setSAVEFOLDER(today);
+				System.out.println(picFile.getOriginalFilename()+" "+saveFileName);
+				//transferTo로 파일 업로드 처리 (어느 폴더에, 어떤 이름으로)
+				picFile.transferTo(new File(folder,saveFileName));
+				
+				//파일을 담은 DTO를 배열로 저장
+				fileInfos.add(fileInfoDTO);
+			}
+		}
+		menuDTO.setFILEINFOS(fileInfos);
+		menuDTO.setMENU_NUM(MENU_NUM);
+		
+		int insertResult = 0;
+		
+		//사진 파일이 저장이 잘 되었다면 db에 등록이 될 수 있도록 함
+		if(!fileInfos.isEmpty()) {
+			insertResult = menuSVC.menuPicInsert(menuDTO);
+			map.put("insertResult", insertResult);
+		} else {
+			map.put("insertResult", 0);
+		}
+		
+		return map;
+	}
+	
+	
+	//사진 삭제
+	@ResponseBody
+	@RequestMapping("menuPicDelete")
+	public String menuDelete(@RequestParam("SAVEFILE") String SAVEFILE) {
+		
+		int deleteResult = menuSVC.menuPicDelete(SAVEFILE);
+		if(deleteResult > 0) {
+			System.out.println("menuDelete 성공");
+			return "1";
+		} else {
+			System.out.println("menuDelete 실패");
+			return "0";
+		}
+	}
 		
 	
 	//메뉴 정보 출력

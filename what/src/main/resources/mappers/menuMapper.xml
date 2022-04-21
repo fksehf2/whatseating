@@ -15,14 +15,12 @@
 <!-- 사진 등록 -->
 <insert id="menu_picRegister" parameterType="fileInfo">
 	insert into PIC_DATA(MENU_NUM, SAVEFOLDER, ORIGINALFILE, SAVEFILE) values(#{MENU_NUM}, #{SAVEFOLDER}, #{ORIGINALFILE}, #{SAVEFILE})
-
 </insert>
 
-<!-- 사진 이미지 수정 -->
-<update id="menu_picModify" parameterType="fileInfo">
-	update PIC_DATA set SAVEFOLDER = #{SAVEFOLDER}, ORIGINALFILE = #{ORIGINALFILE},
-	SAVEFILE = #{SAVEFILE} where MENU_NUM = #{MENU_NUM}
-</update>
+<!-- 사진 삭제 -->
+<delete id="menu_picDelete" parameterType="String">
+	delete from PIC_DATA where SAVEFILE = #{SAVEFILE}
+</delete>
 
 <!-- 메뉴 이미지 정보 -->
 <select id="picList" parameterType="int" resultType="fileInfo">

@@ -37,14 +37,5 @@ public class AccountDAO {
 		int idCheck = sqlSession.selectOne("mappers.userMapper.userIdCheck",CUST_ID);
 		return idCheck;
 	}
-	
-	//세션 값 체크
-	public boolean loginCheck(MemberDto dto) {
-	      String name = session.selectOne("member.loginCheck",dto);
-	      // 검색이 안되면 0을 반환해주기 때문에 0과 비교해서 참이면 false, 틀리면 true를 반환
-	      return (Integer.parseInt(name)==0)?false:true;
-	      }
-	
-	
 
 }

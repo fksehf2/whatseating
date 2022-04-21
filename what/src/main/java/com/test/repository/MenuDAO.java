@@ -45,6 +45,39 @@ public class MenuDAO {
 		}
 	}
 	
+	//사진만 저장
+	public int menuPicInsert(MenuDTO menuDTO) {
+		
+		List<FileInfoDTO> list = menuDTO.getFILEINFOS();
+		
+		int picInsertResult = 0;
+		
+		//해당 menu번호에 사진 개수만큼 값을 넣는다.
+		FileInfoDTO fileInfoDTO = new FileInfoDTO();
+		fileInfoDTO.setMENU_NUM(menuDTO.getMENU_NUM());
+		
+		for(int i=0; i < list.size(); i++) {
+			fileInfoDTO.setORIGINALFILE(list.get(i).getORIGINALFILE());
+			fileInfoDTO.setSAVEFILE(list.get(i).getSAVEFILE());
+			fileInfoDTO.setSAVEFOLDER(list.get(i).getSAVEFOLDER());
+			picInsertResult = sqlSession.insert("mappers.menuMapper.menu_picRegister", fileInfoDTO);
+		}
+		
+		if(picInsertResult > 0) {
+			return picInsertResult;
+		} else {
+			return 0;
+		}
+	}
+	
+	
+	//사진 삭제
+	public int menuPicDelete(String SAVEFILE) {
+		int deleteResult = sqlSession.delete("mappers.menuMapper.menu_picDelete",SAVEFILE);
+		return deleteResult;
+	}
+	
+	
 	//메뉴 정보 출력
 	public List<MenuDTO> menuList(int ST_CODE){
 		List<MenuDTO> menuList = sqlSession.selectList("mappers.menuMapper.menuList", ST_CODE);
@@ -70,25 +103,6 @@ public class MenuDAO {
 	public int menuModify(MenuDTO menuDTO) {
 		int updateResult = sqlSession.update("mappers.menuMapper.menuModify", menuDTO);
 		return updateResult;
-	}
-	
-	//사진 정보 수정
-	public int menuPicModify(MenuDTO menuDTO) {
-		
-		List<FileInfoDTO> list = menuDTO.getFILEINFOS();
-		FileInfoDTO fileInfoDTO = new FileInfoDTO();
-		fileInfoDTO.setMENU_NUM(menuDTO.getMENU_NUM());
-		
-		int picUpdateResult = 0;
-		
-		for(int i = 0; i < list.size(); i++) {
-			fileInfoDTO.setORIGINALFILE(list.get(i).getORIGINALFILE());
-			fileInfoDTO.setSAVEFILE(list.get(i).getSAVEFILE());
-			fileInfoDTO.setSAVEFOLDER(list.get(i).getSAVEFOLDER());
-			picUpdateResult = sqlSession.insert("mappers.menuMapper.menu_picModify", fileInfoDTO);
-		}
-		
-		return picUpdateResult;
 	}
 	
 	//메뉴 삭제

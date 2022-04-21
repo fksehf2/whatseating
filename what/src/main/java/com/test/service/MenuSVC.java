@@ -23,6 +23,12 @@ public class MenuSVC {
 		return insertResult;
 	}
 	
+	//사진만 등록
+		public int menuPicInsert(MenuDTO menuDTO) {
+			int insertResult = menuDAO.menuPicInsert(menuDTO);
+			return insertResult;
+		}
+	
 	//메뉴 정보 출력
 	public List<MenuDTO> menuList(int ST_CODE){
 		List<MenuDTO> menuList = menuDAO.menuList(ST_CODE);
@@ -50,10 +56,10 @@ public class MenuSVC {
 		return updateResult;
 	}
 	
-	//사진 정보 수정
-	public int menuPicModify(MenuDTO menuDTO) {
-		int updateResult = menuDAO.menuPicModify(menuDTO);
-		return updateResult;
+	//사진 삭제
+	public int menuPicDelete(String SAVEFILE) {
+		int deleteResult = menuDAO.menuPicDelete(SAVEFILE);
+		return deleteResult;
 	}
 	
 	//메뉴 삭제
