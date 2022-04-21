@@ -1,0 +1,46 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    text-align: center;
+    background-color: #353535;
+    line-height: 100px;
+    font-size: 20px;
+    color: #fff;
+    position: relative;
+}
+
+.header-top {
+    display: inline-block;
+    height: 100px;
+}
+
+.top-navi {
+    position: absolute;
+    top: 0;
+    right: 10px;
+}
+
+.top-navi>ul {
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+.top-navi>ul>li {
+    list-style-type: none;
+    margin: 0 5px;
+}
+
+.top-navi>ul>li>a {
+    text-decoration: none;
+    color: #fff;
+}
+
+#logoutBox {
+    border: .5px solid #fff;
+    color: #fff;
+    cursor: pointer;
+}

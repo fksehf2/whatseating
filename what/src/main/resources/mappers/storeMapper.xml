@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mappers.storeMapper">
+	<select id="storeList" parameterType="String" resultType="storeDTO">
+		select * from ST_DATA where ST_MANAGER = #{ST_MANAGER}
+	</select>
+	
+	<select id="storeInfo" resultType="storeDTO">
+		select * from ST_DATA where ST_CODE = #{ST_CODE}
+	</select>
+	
+	<insert id="storeRegister" parameterType="storeDTO">
+		<selectKey keyProperty="ST_CODE" resultType="int" order="BEFORE">
+			select STORE_SEQ.NEXTVAL from DUAL		
+		</selectKey>
+		insert into ST_DATA values(#{ST_CODE}, #{ST_MANAGER}, #{ST_NAME}, #{ST_ADDRESSNO}, 
+		#{ST_ADDRESSBASIC}, #{ST_ADDRESSDETAIL}, #{ST_ADDRESSEXTRA}, #{ST_PHNO}, #{ST_STARTTIME}, #{ST_ENDTIME}, 
+		#{ST_CONTENT}, 0)
+	</insert>
+	
+	<delete id="storeDelete" parameterType="int">
+		delete from ST_DATA where ST_CODE = #{ST_CODE}
+	</delete>
+	
+	<update id="storeModify" parameterType="storeDTO">
+		update ST_DATA set ST_NAME = #{ST_NAME}, ST_ADDRESSNO = #{ST_ADDRESSNO}, 
+		ST_ADDRESSBASIC = #{ST_ADDRESSBASIC}, ST_ADDRESSDETAIL = #{ST_ADDRESSDETAIL}, ST_ADDRESSEXTRA = #{ST_ADDRESSEXTRA},
+		ST_PHNO = #{ST_PHNO}, ST_STARTTIME = #{ST_STARTTIME}, ST_ENDTIME = #{ST_ENDTIME}, ST_CONTENT = #{ST_CONTENT} where ST_CODE = #{ST_CODE} 
+	</update>
+	
+	<select id="storeCount" parameterType="String" resultType="int">
+		select count(ST_CODE) from ST_DATA where ST_MANAGER = #{ST_MANAGER}
+	</select>
+	
+</mapper>

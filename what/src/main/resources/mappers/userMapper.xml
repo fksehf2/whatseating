@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mappers.userMapper">
+	<select id="userInfo" resultType="accountDTO">
+		select * from ACCOUNT_DATA where CUST_ID = #{CUST_ID}
+	</select>
+	
+	<insert id="userRegister" parameterType="accountDTO">
+	<selectKey keyProperty="CUST_NUM" resultType="int" order="BEFORE">
+		select USER_SEQ.NEXTVAL from DUAL
+	</selectKey>
+		insert into ACCOUNT_DATA values(#{CUST_ID}, #{CUST_PW}, #{CUST_NUM}, #{CUST_NAME}, #{CUST_GENDER}, 
+		#{CUST_PHNO}, #{CUST_EMAIL}, #{CUST_EMAIL2}, #{CUST_ADDRESSNO}, #{CUST_ADDRESSBASIC}, 
+		#{CUST_ADDRESSDETAIL}, #{CUST_ADDRESSEXTRA}, #{CUST_TYPE}, '가입', 0)
+	</insert>
+	
+	<delete id="userDelete" parameterType="String">
+		delete from ACCOUNT_DATA where CUST_ID = #{CUST_ID}
+	</delete>
+	
+	<update id="userModify" parameterType="accountDTO">
+		update ACCOUNT_DATA set CUST_PW = #{CUST_PW}, CUST_NAME = #{CUST_NAME}, 
+		CUST_GENDER = #{CUST_GENDER}, CUST_PHNO = #{CUST_PHNO}, CUST_EMAIL = #{CUST_EMAIL}, CUST_EMAIL2 = #{CUST_EMAIL2}, 
+		CUST_ADDRESSNO = #{CUST_ADDRESSNO}, CUST_ADDRESSBASIC = #{CUST_ADDRESSBASIC}, CUST_ADDRESSDETAIL = #{CUST_ADDRESSDETAIL}, CUST_ADDRESSEXTRA = #{CUST_ADDRESSEXTRA}, 
+		CUST_TYPE = #{CUST_TYPE} where CUST_ID = #{CUST_ID}
+	</update>
+	
+	<select id="userNoshowCount" parameterType="String" resultType="int">
+		select CUST_NOSHOW from ACCOUNT_DATA where CUST_ID = #{CUST_ID}
+	</select>
+	
+	<update id="userNoshowModify" parameterType="String">
+		update ACCOUNT_DATA set CUST_NOSHOW = CUST_NOSHOW + 1 where CUST_ID = #{CUST_ID} 
+	</update>
+	
+	<select id="userIdCheck" parameterType="String" resultType="int">
+		select count(*) from ACCOUNT_DATA where CUST_ID = #{CUST_ID}
+	</select>
+	
+	<select id="loginCheck" resultType="String">
+      <![CDATA[
+         SELECT count(*) FROM ACCOUNT_DATA
+         WHERE CUST_ID = #{CUST_ID} AND CUST_PW = #{CUST_PW}
+      ]]>
+   </select>
+</mapper>

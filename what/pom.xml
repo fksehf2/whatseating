@@ -151,6 +151,11 @@
           <artifactId>jackson-databind</artifactId>
           <version>2.6.0</version>
       </dependency>
+      <dependency>
+            <groupId>org.codehaus.jackson</groupId>
+            <artifactId>jackson-mapper-asl</artifactId>
+            <version>1.9.13</version>
+        </dependency>
       <!-- Aop 용 라이브러리 -->
         <dependency>
          <groupId>org.springframework</groupId>
@@ -186,7 +191,7 @@
 		    <groupId>org.apache.commons</groupId>
 		    <artifactId>commons-email</artifactId>
 		    <version>1.5</version>
-		</dependency>  
+		</dependency>
 	</dependencies>
     <build>
         <plugins>

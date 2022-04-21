@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+	<typeAliases>
+		<typeAlias type="com.test.vo.AccountDTO" alias="accountDTO"/>
+		<typeAlias type="com.test.vo.StoreDTO" alias="storeDTO"/>
+		<typeAlias type="com.test.vo.MenuDTO" alias="menuDTO"/>
+		<typeAlias type="com.test.vo.FileInfoDTO" alias="fileInfo"/>
+	</typeAliases>
+
+	<mappers>
+	    <mapper resource="mappers/userMapper.xml"/>
+		<mapper resource="mappers/storeMapper.xml"/>
+		<mapper resource="mappers/menuMapper.xml"/>
+	</mappers>
+
+</configuration>
