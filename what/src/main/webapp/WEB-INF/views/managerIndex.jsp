@@ -383,7 +383,7 @@
                   </span>
              </div>
             <div class="member-check-table">
-            	<form action="" method="post" id="menuPicForm" enctype="multipart/form-data">
+            	<form method="post" id="menuPicForm" enctype="multipart/form-data">
             		<input type="hidden" name="MENU_NUM" value="">
             		<table>
 						<colgroup>
@@ -401,7 +401,7 @@
 					</table>
             	</form>
             	
-           		<form action="" method="post" id="menuDetailForm">
+           		<form method="post" id="menuDetailForm">
            		<!-- value에 세션 값을 넣을 수 있도록 함 -->
            		<input type="hidden" name="MENU_NUM" value="">
 					<table>

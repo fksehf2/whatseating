@@ -220,13 +220,13 @@ $(function(){
 									$(".upload-fileView").empty();
 									$.each(picInfo, function(idx, item){
 										//사진을 보여줄 때, 저정된 파일 위치의 사진으로 보여줘야 하는지??
-										body += "<div><img src='"+$("#getContextPath").val()+"'/resources/img/store/"+item.st_CODE+"/"+item.originalfile+".jpg' class='bx-img'></div>";
+										body += "<div><img src='"+$("#getContextPath").val()+"/resources/upload"+item.savefolder+"/"+item.savefile+"' class='bx-img'></div>";
 										
 										//현재 사진의 대한 정보도 보여줄 수 있도록 함
 										originalUpload = "";
 										originalUpload += "<div id='originalFile"+originalFileNum+"' class='picDeleteBox'>"+item.originalfile;
 										originalUpload += '<input type="hidden" name="SAVEFILE" value="'+item.savefile+'">';
-										originalUpload += '<img src="C:/Users/digitalOne/Documents/workspace-spring-tool-suite-4-4.14.0.RELEASE/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/what/resources/upload'+item.savefolder+'/'+item.savefile+'" alt="사진없음" class="picDeleteBtn">';
+										originalUpload += '<img src="'+$("#getContextPath").val()+'/resources/img/x.png" alt="사진없음" class="picDeleteBtn">';
 										originalUpload += "</div>";
 										
 										$(".upload-fileView").prepend(originalUpload);
@@ -382,17 +382,16 @@ $(function(){
 				contentType : false,
 				enctype : "multipart/form-data",
 				success : function(result){
-					alert(result.insertResult);
-					if(result.insertResult > 0){
-						alert("사진이 수정되었습니다.");
+						alert("사진 수정이 완료되었습니다.");
 						$("#menuPicUpdateBtn").css("display","none");
 						$("#menuPicModifyBtn").css("display","inline-block");
-					}
+						location.reload();
 				}, error : function(){
 					alert("사진이 수정되지 않았습니다.");
 				}
 			});
-			event.preventDefault();
+			
+			return false;
 		});
 		
 		//js에서 getContex구하는 법

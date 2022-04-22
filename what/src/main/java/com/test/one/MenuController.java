@@ -133,7 +133,7 @@ public class MenuController {
 			insertResult = menuSVC.menuRegister(menuDTO);
 			map.put("insertResult", insertResult);
 		} else {
-			map.put("insertResult", 0);
+			map.put("insertResult", insertResult);
 		}
 		
 		return map;
@@ -153,6 +153,7 @@ public class MenuController {
 		String today = new SimpleDateFormat("yyyyMMdd").format(new Date());
 		String saveFolder = realPath + today;
 		System.out.println(saveFolder);
+		
 		
 		//경로에 파일이 있는지 확인 //없으면 파일을 만듬
 		File folder = new File(saveFolder);
@@ -189,7 +190,7 @@ public class MenuController {
 			insertResult = menuSVC.menuPicInsert(menuDTO);
 			map.put("insertResult", insertResult);
 		} else {
-			map.put("insertResult", 0);
+			map.put("insertResult", insertResult);
 		}
 		
 		return map;
