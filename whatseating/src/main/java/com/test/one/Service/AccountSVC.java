@@ -10,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.test.one.Repository.AccountDAO;
-import com.test.one.Repository.MemberDao;
 import com.test.one.Vo.AccountDto;
 import com.test.one.mail.SendMail;
 
@@ -24,21 +23,21 @@ public class AccountSVC {
 	 
 	 
 	   public void loginProcess(AccountDto dto, HttpSession session) {
-		   //입력한 정보가 맞는여부
+		   //�엯�젰�븳 �젙蹂닿� 留욌뒗�뿬遺�
 	      boolean isValid=false;
 	      String pwd=dto.getCUST_PW();
 	      AccountDto result=accountDAO.getData(dto.getCUST_ID());
-	      if(result != null) {//만일 존재하는 아이디 라면
-	         //비밀번호가 일치하는지 확인한다.
-	         String inputPwd2=result.getCUST_PW();//DB 에 저장된 비밀번호 
-	         String inputPwd=dto.getCUST_PW();//로그인폼에 입력한 비밀번호
+	      if(result != null) {//留뚯씪 議댁옱�븯�뒗 �븘�씠�뵒 �씪硫�
+	         //鍮꾨�踰덊샇媛� �씪移섑븯�뒗吏� �솗�씤�븳�떎.
+	         String inputPwd2=result.getCUST_PW();//DB �뿉 ���옣�맂 鍮꾨�踰덊샇 
+	         String inputPwd=dto.getCUST_PW();//濡쒓렇�씤�뤌�뿉 �엯�젰�븳 鍮꾨�踰덊샇
 	         System.out.println("inputPwd2" + inputPwd2);
-	         //Bcrypt 클래스의 static 메소드를 이용해서 일치 여부를 얻어낸다.
+	         //Bcrypt �겢�옒�뒪�쓽 static 硫붿냼�뱶瑜� �씠�슜�빐�꽌 �씪移� �뿬遺�瑜� �뼸�뼱�궦�떎.
 	         isValid=true;
 	      }
 	      
-	      if(isValid) {//만일 유효한 정보이면 
-	         //로그인 처리를 한다.
+	      if(isValid) {//留뚯씪 �쑀�슚�븳 �젙蹂댁씠硫� 
+	         //濡쒓렇�씤 泥섎━瑜� �븳�떎.
 	         session.setAttribute("id", dto.getCUST_ID());
 	      }
 	   }
@@ -46,8 +45,8 @@ public class AccountSVC {
 	
 	public boolean loginCheck(AccountDto dto, HttpSession session) {		
 			boolean result = accountDAO.loginCheck(dto);
-			if (result == true) {	//true 일경우 세션 등록
-				//세션 변수 등록
+			if (result == true) {	//true �씪寃쎌슦 �꽭�뀡 �벑濡�
+				//�꽭�뀡 蹂��닔 �벑濡�
 				session.setAttribute("id", dto.getCUST_ID());
 				session.setAttribute("status", dto.getCUST_STATUS());
 			}		
@@ -61,7 +60,7 @@ public class AccountSVC {
 		String id=accountDAO.FindId(CUST_PHNO);
 		if(id == null) {
 			out.println("<script>");
-			out.println("alert('가입된 아이디가 없습니다.');");
+			out.println("alert('媛��엯�맂 �븘�씠�뵒媛� �뾾�뒿�땲�떎.');");
 			out.println("history.go(-1);");
 			out.println("</script>");
 			out.close();
@@ -80,13 +79,13 @@ public class AccountSVC {
 		System.out.println("email" +"--------"+ email1);
 		if(accountDAO.getData(dto.getCUST_ID()) == null) {
 			out.println("<script>");
-			out.println("alert('가입된 아이디가 없습니다.')");
+			out.println("alert('媛��엯�맂 �븘�씠�뵒媛� �뾾�뒿�땲�떎.')");
 			out.println("</script>");
 			out.close();	
 		}else if(!dto.getCUST_EMAIL().equals(accountDAO.getData(dto.getCUST_ID()).getCUST_EMAIL()))
 		{
 			out.println("<script>");
-			out.println("alert('가입된 이메일이 없습니다.');");
+			out.println("alert('媛��엯�맂 �씠硫붿씪�씠 �뾾�뒿�땲�떎.');");
 			out.println("</script>");
 			out.close();	
 			
@@ -104,13 +103,39 @@ public class AccountSVC {
 			
 			
 			 out.println("<script>");
-			 out.println("alert('임시 비밀번호를 발송했습니다.'); location.href='http://localhost:8080/home.do';</script>");
+			 out.println("alert('�엫�떆 鍮꾨�踰덊샇瑜� 諛쒖넚�뻽�뒿�땲�떎.'); location.href='http://localhost:8080/home.do';</script>");
 			 out.println("</script>");
 			 out.flush();
 			 
 			
 		}
 		
+	}
+	
+	public AccountDto userInfo(String cust_id) {
+		AccountDto accountDTO = accountDAO.userInfo(cust_id);
+		return accountDTO;
+	}
+	
+	public int userRegister(AccountDto accountDTO) {
+		int insertResult = accountDAO.userRegister(accountDTO);
+		return insertResult;
+	}
+	
+	public int userDelete(String CUST_ID) {
+		int deleteResult = accountDAO.userDelete(CUST_ID);
+		return deleteResult;
+	}
+	
+	public int userUpdate(String CUST_ID) {
+		int updateResult = accountDAO.userUpdate(CUST_ID);
+		return updateResult;
+	}
+	
+	//아이디체크
+	public int userIdCheck(String CUST_ID) {
+		int idCheck = accountDAO.userIdCheck(CUST_ID);
+		return idCheck;
 	}
 
 }

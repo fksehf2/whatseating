@@ -23,7 +23,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.google.gson.JsonArray;
 import com.test.one.Service.PlanService;
 import com.test.one.Vo.PlanDto;
 
@@ -40,7 +39,7 @@ public class PlanController {
 
 		service.storeList(request);
 
-		System.out.println("storeList 진입");
+		System.out.println("storeList 吏꾩엯");
 		return "store/test";
 	}
 
@@ -60,7 +59,7 @@ public class PlanController {
 		/*
 		 * //List<Map<String, Object>> list2=service.storeList3(map);
 		 * //System.out.println("list" +"--------"+ list); //System.out.println("map"
-		 * +"--------"+ map); //List<Map> collection = new Vector<Map>(); //응답 데이터 셋팅
+		 * +"--------"+ map); //List<Map> collection = new Vector<Map>(); //�쓳�떟 �뜲�씠�꽣 �뀑�똿
 		 * for(int i=0; i<list.size(); i++){ HashMap<String, Object> result=new
 		 * HashMap<String,Object>(); PlanDto dto = new PlanDto(); result.put("ST_CODE",
 		 * dto.getST_CODE()); result.put("ST_NAME", dto.getST_NAME());
@@ -86,7 +85,7 @@ public class PlanController {
 		//Set<Map<String, Object>> detail2 = newHashSet<Map<String, Object>>(detail);
 
 		System.out.println("AJAX" +"--------"+ detail.get(4).get("ST_NAME"));
-		logger.info("허허허?");
+		logger.info("�뿀�뿀�뿀?");
 		return detail;
 
 	}
