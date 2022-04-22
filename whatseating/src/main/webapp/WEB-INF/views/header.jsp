@@ -135,18 +135,15 @@ function OpenModal(){
 		url : 'api/detail', //불러올 list
 		//data : data /*data속성 : data-> 서버로 보낼 데이터*/
 		success:function(detail){/*서버가 나에게 응답해준 데이터*/
-			console.log(detail[0].ST_NAME);
-			console.log(detail[1].ST_NAME);
-			console.log(detail[2].ST_NAME);
-			console.log(detail[3].ST_NAME);
-			console.log(detail[4].ST_NAME);
 			for(var i in detail){
-			$("#exampleModalToggleLabel").html(detail[i].ST_NAME);
-			$("#store_name").html(detail[i].ST_NAME);
-			$("#store_content").html(detail[i].ST_CONTENT);
-			$("#store_addr").html(detail[i].ST_ADDRESS
-					);
+				$("#exampleModalToggleLabel").html(detail[i].ST_NAME);
 			}
+			for(var i in detail){
+			$("#store_name").html(detail.ST_NAME);
+			$("#store_content").html(detail.ST_CONTENT);
+			//$("#store_addr").html(detail.ST_ADDRESS);
+			$('#store_menu').html(detail[i].MENU_NAME);
+		};
 		},
 		//실패시
 		error : function(){

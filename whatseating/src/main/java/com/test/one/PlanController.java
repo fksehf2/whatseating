@@ -85,7 +85,7 @@ public class PlanController {
 		List<Map<String, Object>> detail=service.GetdetailList2(map); 
 		//Set<Map<String, Object>> detail2 = newHashSet<Map<String, Object>>(detail);
 
-		System.out.println("AJAX" +"--------"+ detail.get(4).get("ST_NAME"));
+		System.out.println("AJAX" +"--------"+ detail.get(2).get("ST_NAME"));
 		logger.info("허허허?");
 		return detail;
 
