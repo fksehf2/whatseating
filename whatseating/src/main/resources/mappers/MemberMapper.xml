@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="member">
+
+	<select id ="getData"  parameterType="String" resultType="accountDTO">
+	  SELECT CUST_ID, CUST_EMAIL, CUST_EMAIL2
+      FROM ACCOUNT_DATA
+      WHERE CUST_ID=#{CUST_ID}
+	</select>
+	
+<select id="loginCheck" resultType="String">
+		<![CDATA[
+			SELECT count(*) FROM ACCOUNT_DATA
+			WHERE CUST_ID = #{CUST_ID} AND CUST_PW = #{CUST_PW}
+		]]>
+	</select>
+	
+	<select id="findId" resultType="String">
+		SELECT CUST_ID 
+		FROM ACCOUNT_DATA 
+		WHERE CUST_PHNO=#{CUST_PHNO}
+	</select>
+	
+	<update id="findPw" parameterType="accountDTO">
+		UPDATE ACCOUNT_DATA
+		SET CUST_PW = #{CUST_PW} 
+		WHERE CUST_ID =#{CUST_ID} 
+	</update>
+	
+	<select id="email" resultType="accountDTO">
+		CONCAT(CONCAT(CUST_EMAIL,'@'),CUST_EMAIL2
+		FROM ACCOUNT_DATA
+	</select>
+	
+</mapper>

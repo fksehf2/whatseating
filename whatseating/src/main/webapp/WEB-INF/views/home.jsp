@@ -28,8 +28,7 @@ h2 { text-align: center; }
 <body>
 </br>
 <%@ include file="header.jsp" %>
-			
- </br> 
+
  	<c:if test="${ empty sessionScope.id }">
     <div class="member_login" >
         <form id="login_form" method="post" action="ajaxlogin.do">
@@ -43,7 +42,7 @@ h2 { text-align: center; }
 		</c:choose>
 		<%-- <%@ include file="store/test.jsp" %> --%>
         <div>
-        <input type="radio" name="CUST_STATUS" value="customer">
+        <input type="radio" name="CUST_STATUS" value="customer" checked>
                               일반회원 
         <input type="radio" name="CUST_STATUS" value="owner">
                               점주
@@ -61,7 +60,7 @@ h2 { text-align: center; }
             </div>
             </br>
             <div class="find_password">
-                <a href="/forgot-password">아이디 또는 비밀번호를 잊으셨나요?</a>
+                <a href="/find_id_pw">아이디 또는 비밀번호를 잊으셨나요?</a>
             </div>
 			</br>
 			<button class="btn btn-sm btn btn-outline-secondary" id="logBtn">로그인</button>
@@ -69,7 +68,7 @@ h2 { text-align: center; }
        </form>
     </div>                    
 	</c:if>
-    </body>
+</body>
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 
 <script>
