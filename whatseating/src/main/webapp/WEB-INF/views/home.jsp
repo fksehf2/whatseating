@@ -42,9 +42,9 @@ h2 { text-align: center; }
 		</c:choose>
 		<%-- <%@ include file="store/test.jsp" %> --%>
         <div>
-        <input type="radio" name="CUST_STATUS" value="customer" checked>
+        <input type="radio" name="CUST_TYPE" value="customer" checked>
                               일반회원 
-        <input type="radio" name="CUST_STATUS" value="owner">
+        <input type="radio" name="CUST_TYPE" value="owner">
                               점주
         </div>
         </br>

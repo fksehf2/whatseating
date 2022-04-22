@@ -48,7 +48,7 @@ public class AccountSVC {
 			if (result == true) {	//true �씪寃쎌슦 �꽭�뀡 �벑濡�
 				//�꽭�뀡 蹂��닔 �벑濡�
 				session.setAttribute("id", dto.getCUST_ID());
-				session.setAttribute("status", dto.getCUST_STATUS());
+				session.setAttribute("type", dto.getCUST_TYPE());
 			}		
 			return result;
 		}
