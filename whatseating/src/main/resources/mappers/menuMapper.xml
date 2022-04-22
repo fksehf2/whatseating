@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mappers.menuMapper">
+<!-- 메뉴 등록 -->
+<insert id="menuRegister" parameterType="menuDTO">
+	<selectKey keyProperty="MENU_NUM" resultType="int" order="BEFORE">
+		select MENU_SEQ.NEXTVAL from DUAL
+	</selectKey>
+	insert into MENU_DATA(MENU_NUM, ST_CODE, MENU_NAME, 
+	MENU_PRICE, MENU_CONTENT, MENU_REGMANAGER, MENU_REGDATE) 
+	values(#{MENU_NUM}, #{ST_CODE}, #{MENU_NAME}, #{MENU_PRICE}, 
+	#{MENU_CONTENT}, #{MENU_REGMANAGER}, TO_DATE(#{MENU_REGDATE},'YYYY-MM-DD HH24:mi:ss'))
+</insert>
+
+<!-- 사진 등록 -->
+<insert id="menu_picRegister" parameterType="fileInfo">
+	insert into PIC_DATA(MENU_NUM, SAVEFOLDER, ORIGINALFILE, SAVEFILE) values(#{MENU_NUM}, #{SAVEFOLDER}, #{ORIGINALFILE}, #{SAVEFILE})
+</insert>
+
+<!-- 사진 삭제 -->
+<delete id="menu_picDelete" parameterType="String">
+	delete from PIC_DATA where SAVEFILE = #{SAVEFILE}
+</delete>
+
+<!-- 메뉴 이미지 정보 -->
+<select id="picList" parameterType="int" resultType="fileInfo">
+	select * from PIC_DATA where MENU_NUM = #{MENU_NUM}
+</select>
+
+<!-- 매장에 해당하는 메뉴 정보 -->
+<select id="menuList" parameterType="int" resultType="menuDTO">
+	select * from MENU_DATA where ST_CODE = #{ST_CODE}
+</select>
+<!-- 메뉴 상세 보기 -->
+<select id="menuDetail" parameterType="int" resultType="menuDTO">
+	select * from MENU_DATA where MENU_NUM = #{MENU_NUM}
+</select>
+<!-- 메뉴 수정 -->
+<update id="menuModify" parameterType="menuDTO">
+	update MENU_DATA set MENU_NAME = #{MENU_NAME}, 
+	MENU_PRICE = #{MENU_PRICE}, MENU_CONTENT = #{MENU_CONTENT}, 
+	MENU_UPDMANAGER = #{MENU_UPDMANAGER}, MENU_UPDDATE = TO_DATE(#{MENU_UPDDATE},'YYYY-MM-DD HH24:mi:ss') where MENU_NUM = #{MENU_NUM}
+</update>
+<!-- 메뉴 삭제 -->
+<delete id="menuDelete" parameterType="int">
+	delete from MENU_DATA where MENU_NUM = #{MENU_NUM}
+</delete>
+
+
+</mapper>

@@ -14,12 +14,17 @@
 		<typeAlias type="com.test.one.Vo.PlanDto" alias="PlanDto"/>
 		<typeAlias type="com.test.one.Vo.AccountDto" alias="accountDTO"/>
 		<typeAlias type="com.test.one.Vo.CateDto" alias="CateDto"/>
+		<typeAlias type="com.test.one.Vo.FileInfoDTO" alias="fileInfo"/>
+		<typeAlias type="com.test.one.Vo.MenuDTO" alias="menuDTO"/>
+		<typeAlias type="com.test.one.Vo.StoreDTO" alias="storeDTO"/>
 	</typeAliases>
 	
 	<!-- 필요한 mapper xml 등록하기 -->
 	<mappers>
     	<mapper resource="mappers/StoreMapper.xml"/>
     	<mapper resource="mappers/CategoryMapper.xml"/>
+     	<mapper resource="mappers/menuMapper.xml"/>
+     	<mapper resource="mappers/userMapper.xml"/>
      	<mapper resource="mappers/MemberMapper.xml"/>
     </mappers> 
     </configuration>
