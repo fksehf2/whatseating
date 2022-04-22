@@ -8,12 +8,17 @@ $(function(){
         $('#detailModal').hide();
         });
    
-    $("#replyInfo").click(function() {
-        $('#replyModal').show();
+    $(document).on("click","reservationInfo",function() {
+        $('#reservationModal').show();
         });
+        
+    $("reservationInfo").click(function() {
+        $('#reservationModal').show();
+        });
+        
         //팝업 Close 기능
-    $("#reply_close").click(function() {
-        $('#replyModal').hide();
+    $("#reservation_close").click(function() {
+        $('#reservationModal').hide();
         });
     $("#menuInfo").click(function() {
         $('#menuModal').show();

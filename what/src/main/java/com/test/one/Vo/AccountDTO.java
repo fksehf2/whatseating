@@ -1,4 +1,4 @@
-package com.test.vo;
+package com.test.one.Vo;
 
 public class AccountDTO {
 

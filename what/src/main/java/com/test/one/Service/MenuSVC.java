@@ -1,4 +1,4 @@
-package com.test.service;
+package com.test.one.Service;
 
 import java.util.HashMap;
 import java.util.List;
@@ -7,9 +7,9 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.test.repository.MenuDAO;
-import com.test.vo.FileInfoDTO;
-import com.test.vo.MenuDTO;
+import com.test.one.Repository.MenuDAO;
+import com.test.one.Vo.FileInfoDTO;
+import com.test.one.Vo.MenuDTO;
 
 @Service("menuSVC")
 public class MenuSVC {

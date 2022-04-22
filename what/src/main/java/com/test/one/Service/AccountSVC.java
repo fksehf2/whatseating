@@ -1,10 +1,10 @@
-package com.test.service;
+package com.test.one.Service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.test.repository.AccountDAO;
-import com.test.vo.AccountDTO;
+import com.test.one.Repository.AccountDAO;
+import com.test.one.Vo.AccountDTO;
 
 @Service("accountSVC")
 public class AccountSVC {

@@ -7,7 +7,6 @@
 	if(session.getAttribute("CUST_ID") != null){
 		CUST_ID = (String) session.getAttribute("CUST_ID");
 	}
-	
 %>
 <!DOCTYPE html>
 <html lang="en">
@@ -24,7 +23,7 @@
 <script src="${pageContext.request.contextPath}/resources/js/store_reservationDetail.js"></script>
 </head>
 <body>
-	<jsp:include page="header.jsp" />
+	<jsp:include page="managerHeader.jsp" />
     <section class="totalSection"> 
         <div class="left-category">
             <ul>

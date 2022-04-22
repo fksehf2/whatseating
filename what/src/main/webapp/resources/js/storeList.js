@@ -220,7 +220,7 @@ $(function(){
 									$(".upload-fileView").empty();
 									$.each(picInfo, function(idx, item){
 										//사진을 보여줄 때, 저정된 파일 위치의 사진으로 보여줘야 하는지??
-										body += "<div><img src='"+$("#getContextPath").val()+"/resources/upload"+item.savefolder+"/"+item.savefile+"' class='bx-img'></div>";
+										body += "<div><img src='/fileUpload/resources/upload"+item.savefolder+"/"+item.savefile+"' class='bx-img'></div>";
 										
 										//현재 사진의 대한 정보도 보여줄 수 있도록 함
 										originalUpload = "";

@@ -18,6 +18,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.apache.commons.io.FileUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -28,13 +30,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.test.service.MenuSVC;
-import com.test.vo.FileInfoDTO;
-import com.test.vo.MenuDTO;
+import com.test.one.Service.MenuSVC;
+import com.test.one.Vo.FileInfoDTO;
+import com.test.one.Vo.MenuDTO;
 
 @Controller
 @RequestMapping("/manager/store/menu/")
 public class MenuController {
+	private static final Logger logger = LoggerFactory.getLogger(MenuController.class);
 	
 	@Autowired
 	ServletContext servletContext;
@@ -95,7 +98,9 @@ public class MenuController {
 		String realPath = servletContext.getRealPath("/resources/upload");
 		String today = new SimpleDateFormat("yyyyMMDD").format(new Date());
 		String saveFolder = realPath + today;
-		System.out.println(saveFolder);
+		
+		logger.info(saveFolder);
+		logger.debug(saveFolder);
 		
 		//경로에 파일이 있는지 확인 //없으면 파일을 만듬
 		File folder = new File(saveFolder);
@@ -114,7 +119,8 @@ public class MenuController {
 				fileInfoDTO.setORIGINALFILE(originalFileName);
 				fileInfoDTO.setSAVEFILE(saveFileName);
 				fileInfoDTO.setSAVEFOLDER(today);
-				System.out.println(picFile.getOriginalFilename()+" "+saveFileName);
+				logger.info(picFile.getOriginalFilename()+" "+saveFileName);
+				
 				//transferTo로 파일 업로드 처리 (어느 폴더에, 어떤 이름으로)
 				picFile.transferTo(new File(folder,saveFileName));
 				
@@ -152,7 +158,7 @@ public class MenuController {
 		String realPath = servletContext.getRealPath("/resources/upload");
 		String today = new SimpleDateFormat("yyyyMMdd").format(new Date());
 		String saveFolder = realPath + today;
-		System.out.println(saveFolder);
+		logger.info(saveFolder);
 		
 		
 		//경로에 파일이 있는지 확인 //없으면 파일을 만듬
@@ -172,7 +178,7 @@ public class MenuController {
 				fileInfoDTO.setORIGINALFILE(originalFileName);
 				fileInfoDTO.setSAVEFILE(saveFileName);
 				fileInfoDTO.setSAVEFOLDER(today);
-				System.out.println(picFile.getOriginalFilename()+" "+saveFileName);
+				logger.info(picFile.getOriginalFilename()+" "+saveFileName);
 				//transferTo로 파일 업로드 처리 (어느 폴더에, 어떤 이름으로)
 				picFile.transferTo(new File(folder,saveFileName));
 				

@@ -1,4 +1,4 @@
-package com.test.vo;
+package com.test.one.Vo;
 
 import java.util.List;
 

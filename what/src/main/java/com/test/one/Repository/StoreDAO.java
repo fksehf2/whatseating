@@ -1,4 +1,4 @@
-package com.test.repository;
+package com.test.one.Repository;
 
 import java.util.List;
 
@@ -6,7 +6,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.test.vo.StoreDTO;
+import com.test.one.Vo.StoreDTO;
 
 @Repository("storeDAO")
 public class StoreDAO {

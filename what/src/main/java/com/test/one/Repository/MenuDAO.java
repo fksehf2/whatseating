@@ -1,4 +1,4 @@
-package com.test.repository;
+package com.test.one.Repository;
 
 import java.util.HashMap;
 import java.util.List;
@@ -9,8 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.test.vo.FileInfoDTO;
-import com.test.vo.MenuDTO;
+import com.test.one.Vo.FileInfoDTO;
+import com.test.one.Vo.MenuDTO;
 
 @Repository("menuDAO")
 public class MenuDAO {

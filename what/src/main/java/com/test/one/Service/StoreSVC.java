@@ -1,12 +1,12 @@
-package com.test.service;
+package com.test.one.Service;
 
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.test.repository.StoreDAO;
-import com.test.vo.StoreDTO;
+import com.test.one.Repository.StoreDAO;
+import com.test.one.Vo.StoreDTO;
 
 @Service("storeSVC")
 public class StoreSVC {

@@ -17,8 +17,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.test.service.AccountSVC;
-import com.test.vo.AccountDTO;
+import com.test.one.Service.AccountSVC;
+import com.test.one.Vo.AccountDTO;
 
 @Controller
 @RequestMapping("/customer/")

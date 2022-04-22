@@ -31,7 +31,7 @@
 
 </head>
 <body>
-	<jsp:include page="header.jsp" />
+	<jsp:include page="managerHeader.jsp" />
     <section class="totalSection"> 
     	<input type="hidden" name="getContextPath" id="getContextPath" value="${pageContext.request.contextPath}">
         <div class="left-category">
@@ -69,7 +69,7 @@
             <div class="right-contentTop">
                 <span class="store_title"></span>
                 <button type="button" id="detailInfo">매장정보보기</button>
-                <button type="button" id="replyInfo">상세 후기보기</button>
+                <button type="button" id="reservationInfo">예약 현황</button>
             </div>
             <div class="right-content-middle">
                 <div class="month-search">
@@ -170,54 +170,56 @@
 			</div>
         </div>
     </div>
-    <!-- 후기 상세보기 Modal -->
-    <div id="replyModal" class="modal">
+    <!--------------------------------- 예약 현황 상세보기 Modal ----------------------------------->
+    <div id="reservationModal" class="modal">
         <!-- Modal content -->
-        <div id="reply-content" class="modal-content">
+        <div id="reservation-content">
             <div class="modal-title">
-                <p>후기 receipt</p>
+                <p>메뉴 등록</p>
             </div>
-            <div class="member-check-table">
-				<table>
-					<colgroup>
-						<col width="130px">
-					</colgroup>
-					<tr class="table-col">
-						<td>예약자</td>
-						<td class="first-row">
-							<input type="hidden" name="custom_emailinput" value="">
-							<input type="hidden" name="custom_mailsearch" value="">
-							<span>bunci123123@naver.com</span>
-						</td>
-					</tr>
-					<tr class="table-col">
-						<td>예약인원</td>
-						<td class="first-row">
-							<input type="hidden" name="custom_name" value="">
-							<span>예약자</span>
-						</td>
-					</tr>
-					<tr class="table-col">
-						<td>예약 메뉴</td>
-						<td class="first-row">
-							<input type="hidden" name="custom_nickname" value="">
-							<span>예약 메뉴</span>
-						</td>
-					</tr>
-					<tr class="table-col">
-						<td>예약 테이블</td>
-						<td class="first-row">
-							<input type="hidden" name="custom_phone" value="">
-							<span>예약 테이블</span>
-						</td>
-					</tr>
-				</table>
-			</div>
-              <div style="cursor:pointer;background-color:#DDDDDD;text-align: center;padding-bottom: 10px;padding-top: 10px;" id="reply_close">
-                  <span class="pop_bt" style="font-size: 13pt;" >
-                       닫기
+            <div style="cursor:pointer;text-align: center; "id="reservation_close">
+                  <span class="pop_bt" style="font-size: 25pt;" >
+                       +
                   </span>
-              </div>
+             </div>
+            <div class="member-check-table">
+           		<form method="post" id="reservationForm">
+           		<input type="hidden" name="ST_CODE" value="">
+					<table>
+	                     <colgroup>
+	                        <col width="70px" />
+	                    </colgroup>
+	                     <tr class="table-col">
+	                        <td>시간</td>
+	                        <td>1 테이블</td>
+	                        <td>2 테이블</td>
+	                        <td>3 테이블</td>
+	                        <td>4 테이블</td>
+	                        <td>5 테이블</td>
+	                        <td>6 테이블</td>
+	                    </tr>
+	                    <tr class="table-col">
+	                        <td>9~11</td>
+	                        <td class="left-td">
+	                            <div class="reservation-chart">
+	                                <span>예약 인원 : </span><br/>
+	                                <span>예약자 : </span><br/>
+	                                <span>예약 메뉴 : </span>
+	                            </div>
+	                        </td>
+	                        <td></td>
+	                        <td></td>
+	                        <td></td>
+	                        <td></td>
+	                        <td></td>
+	                    </tr>
+                </table>
+					<div class="btns">
+						<button type="button" class="btn btn-outline-success" id="uploadSubmit">등록</button>
+						<button type="reset" class="btn btn-outline-danger">취소</button>
+					</div>
+				</form>
+			</div>
         </div>
     </div>
     <!--------------------------------------- 메뉴 등록 --------------------------------------------->

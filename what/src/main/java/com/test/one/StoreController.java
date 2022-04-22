@@ -20,8 +20,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.test.service.StoreSVC;
-import com.test.vo.StoreDTO;
+import com.test.one.Service.StoreSVC;
+import com.test.one.Vo.StoreDTO;
 
 @Controller
 @RequestMapping("/manager/store/")
@@ -65,22 +65,6 @@ public class StoreController {
 		return "managerIndex";
 	}
 	
-	//메인 페이지 //매장 리스트
-//	@RequestMapping(value="main")
-//	public String main(HttpServletRequest request,Model model) {
-//		
-//		String ST_MANAGER = "bum";
-//		HttpSession session = request.getSession();
-//		if(session.getAttribute("CUST_ID") != null) {
-//			ST_MANAGER = (String) session.getAttribute("CUST_ID");
-//		}
-//		
-//		List<StoreDTO> storeList = storeSVC.storeList(ST_MANAGER);
-//		model.addAttribute("storeList",storeList);
-//		
-//		return "managerIndex";
-//	}
-	
 	//매장 상세보기
 	@RequestMapping(value="reservationDetail")
 	public String reservationDetail(Model model, @RequestParam("ST_CODE") int ST_CODE) {
@@ -108,7 +92,6 @@ public class StoreController {
 		}
 		return map;
 	}
-	
 	
 	//매장 수정 (ajax 통신)
 	@ResponseBody
