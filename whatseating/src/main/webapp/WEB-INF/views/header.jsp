@@ -35,7 +35,8 @@ body
 }
 </style>
 <div class="mainImg">
-	<img src="resources/img/main.png"/>
+	<img src="${pageContext.request.contextPath}/resources/img/main.png"/>
+	<input type="hidden" name="ijs" value="${pageContext.request.contextPath}">
 </div>
 <br>	
 		<c:if test="${ not empty sessionScope.id }">

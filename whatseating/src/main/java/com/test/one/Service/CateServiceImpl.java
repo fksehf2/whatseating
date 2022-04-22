@@ -26,7 +26,4 @@ public class CateServiceImpl implements CateService {
 			request.setAttribute("cateList", cateList);
 
 			}
-
-
-
 }
