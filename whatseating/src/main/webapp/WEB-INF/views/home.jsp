@@ -64,7 +64,7 @@ h2 { text-align: center; }
             </div>
 			</br>
 			<button class="btn btn-sm btn btn-outline-secondary" id="logBtn">로그인</button>
-			<a class="btn btn-sm btn btn-outline-secondary " href="${pageContext.request.contextPath}/users/signup_form.do">회원가입</a>
+			<a class="btn btn-sm btn btn-outline-secondary " href="/customer/registerForm">회원가입</a>
        </form>
     </div>                    
 	</c:if>
