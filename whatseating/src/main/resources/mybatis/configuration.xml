@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+  
+<configuration>
+    <settings>
+        <setting name="cacheEnabled" value="false" />
+        <setting name="jdbcTypeForNull" value="NULL" />
+    </settings>
+    
+	<!-- 자주 사용하는 type의 별칭을 등록해 놓고 Mapper.xml에서 사용할 수 있다. -->
+	<typeAliases>
+		<typeAlias type="com.test.one.Vo.PlanDto" alias="PlanDto"/>
+		<typeAlias type="com.test.one.Vo.AccountDto" alias="accountDTO"/>
+		<typeAlias type="com.test.one.Vo.CateDto" alias="CateDto"/>
+	</typeAliases>
+	
+	<!-- 필요한 mapper xml 등록하기 -->
+	<mappers>
+    	<mapper resource="mappers/StoreMapper.xml"/>
+    	<mapper resource="mappers/CategoryMapper.xml"/>
+     	<mapper resource="mappers/MemberMapper.xml"/>
+    </mappers> 
+    </configuration>
