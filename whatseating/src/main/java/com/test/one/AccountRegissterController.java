@@ -27,7 +27,7 @@ public class AccountRegissterController {
 	@Autowired
 	private AccountSVC accountSVC;
 	
-	//È¸¿ø°¡ÀÔ È®ÀÎ ÆäÀÌÁö
+	//íšŒì›ê°€ì… í™•ì¸ í˜ì´ì§€
 	@RequestMapping(value = "confirm")
 	public String userInfo(HttpServletRequest request ,Model model) {
 		
@@ -43,34 +43,34 @@ public class AccountRegissterController {
 		return "accountConfirm";
 	}
 	
-	//È¸¿ø°¡ÀÔ ¾ç½Ä ÆäÀÌÁö
+	//íšŒì›ê°€ì… ì–‘ì‹ í˜ì´ì§€
 	@RequestMapping(value = "registerForm")
 	public String userRegisterForm() {
 		
 		return "userRegisterForm";
 	}
 	
-	//È¸¿ø µî·ÏÀÌ µÇ¸é È¸¿ø »ó¼¼ º¸±â ÆäÀÌÁö·Î, µî·ÏÀÌ µÇÁö ¾ÊÀ¸¸é ¾ç½Ä ÆäÀÌÁö·Î º¸³¿
+	//íšŒì› ë“±ë¡ì´ ë˜ë©´ íšŒì› ìƒì„¸ ë³´ê¸° í˜ì´ì§€ë¡œ, ë“±ë¡ì´ ë˜ì§€ ì•Šìœ¼ë©´ ì–‘ì‹ í˜ì´ì§€ë¡œ ë³´ëƒ„
 	@RequestMapping(value = "userRegister")
 	public String userRegister(@ModelAttribute AccountDto accountDTO, HttpServletResponse response) throws Exception {
 		
 		int insertResult = accountSVC.userRegister(accountDTO);
 		if(insertResult == 1) {
-			System.out.println("insert ¼º°ø");
+			System.out.println("insert ì„±ê³µ");
 			return "userDetail";
 		} else {
-			System.out.println("insert ½ÇÆĞ");
+			System.out.println("insert ì‹¤íŒ¨");
 			response.setContentType("text/html; charset=UTF-8");
 			PrintWriter out = response.getWriter();
 			out.println("<script>");
-			out.println("alert('È¸¿ø°¡ÀÔÀÌ µÇÁö ¾Ê¾Ò½À´Ï´Ù.');");
+			out.println("alert('íšŒì›ê°€ì…ì´ ë˜ì§€ ì•Šì•˜ìŠµë‹ˆë‹¤.');");
 			out.println("</script>");
 			return "registerForm";
 		}
 		
 	}
 	
-	//È¸¿ø »ó¼¼ ÆäÀÌÁö
+	//íšŒì› ìƒì„¸ í˜ì´ì§€
 	@RequestMapping(value = "userDetail")
 	public String userDetail(HttpServletRequest request, Model model) {
 		
@@ -85,7 +85,7 @@ public class AccountRegissterController {
 		return "userDetail";
 	}
 	
-	//È¸¿ø »èÁ¦ //ÆäÀÌÁö ÀÌµ¿ ¼³Á¤ ÇÊ¿ä
+	//íšŒì› ì‚­ì œ //í˜ì´ì§€ ì´ë™ ì„¤ì • í•„ìš”
 	@RequestMapping(value = "userDelete")
 	public String userDelete(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
@@ -96,16 +96,16 @@ public class AccountRegissterController {
 		}
 		int deleteResult = accountSVC.userDelete(CUST_ID);
 		if(deleteResult == 1) {
-			System.out.println("delete ¼º°ø");
-			return "ÀÎµ¦½º or ·Î±×ÀÎ ÆäÀÌÁö";
+			System.out.println("delete ì„±ê³µ");
+			return "ì¸ë±ìŠ¤ or ë¡œê·¸ì¸ í˜ì´ì§€";
 		} else {
-			System.out.println("delete ½ÇÆĞ");
+			System.out.println("delete ì‹¤íŒ¨");
 			response.setContentType("text/html; charset=UTF-8");
 			PrintWriter out = response.getWriter();
 			out.println("<script>");
-			out.println("alert('È¸¿ø »èÁ¦°¡ µÇÁö ¾Ê¾Ò½À´Ï´Ù.');");
+			out.println("alert('íšŒì› ì‚­ì œê°€ ë˜ì§€ ì•Šì•˜ìŠµë‹ˆë‹¤.');");
 			out.println("</script>");
-			return "ÀüÀ¸·Î";
+			return "ì „ìœ¼ë¡œ";
 		}
 
 	}
@@ -121,21 +121,21 @@ public class AccountRegissterController {
 		}
 		int updateResult = accountSVC.userUpdate(CUST_ID);
 		if(updateResult == 1) {
-			System.out.println("userUpdate ¼º°ø");
+			System.out.println("userUpdate ì„±ê³µ");
 			return "1";
 		} else {
-			System.out.println("userUpdate ½ÇÆĞ");
+			System.out.println("userUpdate ì‹¤íŒ¨");
 			response.setContentType("text/html; charset=UTF-8");
 			PrintWriter out = response.getWriter();
 			out.println("<script>");
-			out.println("alert('È¸¿ø »èÁ¦°¡ µÇÁö ¾Ê¾Ò½À´Ï´Ù.');");
+			out.println("alert('íšŒì› ì‚­ì œê°€ ë˜ì§€ ì•Šì•˜ìŠµë‹ˆë‹¤.');");
 			out.println("</script>");
 			return "0";
 		}
 
 	}
 	
-	//idÁßº¹Ã¼Å©
+	//idì¤‘ë³µì²´í¬
 	@ResponseBody
 	@RequestMapping("iddbCheck")
 	public Map<String, Integer> userIddbCheck(@RequestParam("id") String CUST_ID){

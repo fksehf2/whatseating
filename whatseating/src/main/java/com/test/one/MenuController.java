@@ -45,46 +45,46 @@ public class MenuController {
 	@Autowired
 	private MenuSVC menuSVC;
 	
-	//¸Þ´º µî·Ï (DBµî·Ï ºÎºÐ)
-//	@ResponseBody //ajax ÆÄÀÏÀ» Ã³¸®ÇÏ±â À§ÇØ (json)
+	//ï¿½Þ´ï¿½ ï¿½ï¿½ï¿½ (DBï¿½ï¿½ï¿½ ï¿½Îºï¿½)
+//	@ResponseBody //ajax ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Ã³ï¿½ï¿½ï¿½Ï±ï¿½ ï¿½ï¿½ï¿½ï¿½ (json)
 //	@RequestMapping("menuRegister")
 //	public Map<String, Integer> menuRegister(@ModelAttribute MenuDTO menuDTO, HttpServletRequest request, HttpServletResponse response, Model model) throws IllegalStateException, IOException {
 //				
 //				Map<String, Integer> map = new HashMap<String, Integer>();
 //				
-//				//¼¼¼Ç °ª ¾ÆÀÌµðµµ ´ãÀ» ¼ö ÀÖµµ·Ï ÇÔ
+//				//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½Ìµï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Öµï¿½ï¿½ï¿½ ï¿½ï¿½
 //				HttpSession session = request.getSession();
 //				String MENU_REGMANAGER = "bum";
 //				
-//				//ÃßÈÄ ¼¼¼Ç°ªÀ» ÀÌ¿ëÇÏ¿© ÀÔ·ÂÇÒ ¼ö ÀÖµµ·Ï ÇÔ
+//				//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ç°ï¿½ï¿½ï¿½ ï¿½Ì¿ï¿½ï¿½Ï¿ï¿½ ï¿½Ô·ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Öµï¿½ï¿½ï¿½ ï¿½ï¿½
 ////				if(session.getAttribute("CUST_ID") != null) {
 ////					MENU_REGMANAGER = (String) session.getAttribute("CUST_ID");
 ////				}
 //				
 //				menuDTO.setMENU_REGMANAGER(MENU_REGMANAGER);
 //				
-//				//ÆÄÀÏÀÌ ´ã±ä ³»¿ëÀ» svc´ÜÀ¸·Î Àü´Þ
+//				//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ svcï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 //				int insertRegister = menuSVC.menuRegister(menuDTO);
 //				if(insertRegister == 1) {
-//					System.out.println("¸Þ´ºµî·Ï ¼º°ø");
+//					System.out.println("ï¿½Þ´ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
 //					map.put("menuResult", 1);
 //					
 //				} else {
-//					System.out.println("¸Þ´ºµî·Ï ½ÇÆÐ");
+//					System.out.println("ï¿½Þ´ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
 //					map.put("menuResult", 0);
 //				}
 //				return map;
 //	}
 	
-	//»çÁø ÆÄÀÏ ÀúÀå, ¸Þ´º µî·Ï
+	//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½, ï¿½Þ´ï¿½ ï¿½ï¿½ï¿½
 	@ResponseBody
 	@RequestMapping("savePic")
 	public Map<String, Object> savePic(@RequestParam("image") MultipartFile[] files, @ModelAttribute MenuDTO menuDTO, HttpServletRequest request) throws Exception, IOException {
 		
-		//json¹®ÀÚ¿­À» º¸³»±â À§ÇÔ
+		//jsonï¿½ï¿½ï¿½Ú¿ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 		Map<String, Object> map = new HashMap<String, Object>();
 		
-		//¼¼¼ÇÀÇ ¾ÆÀÌµð¸¦ ÀÌ¿ëÇØ µî·ÏÀÚ ³»¿ëÀ» ³ÖÀ» ¼ö ÀÖµµ·Ï ÇÔ
+		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ìµï¿½ ï¿½Ì¿ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Öµï¿½ï¿½ï¿½ ï¿½ï¿½
 		String MENU_REGMANAGER = "bum";
 //		HttpSession session = request.getSession();
 //		if(session.getAttribute("CUST_ID") != null) {
@@ -93,8 +93,8 @@ public class MenuController {
 		
 		menuDTO.setMENU_REGMANAGER(MENU_REGMANAGER);
 		
-		// ÆÄÀÏ ¾÷·Îµå, ´Ù¿î·ÎµåÀÇ ±âº» °³³ä
-		// ÆÄÀÏ À§Ä¡ °æ·Î¸¦ db¿¡ ³Ö¾î ºÒ·¯¿Ã ¼ö ÀÖµµ·Ï ÇÏ°í, ½ÇÁ¦·Î Æú´õ¸¦ ¸¸µé¾î ³ÖÀ½
+		// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Îµï¿½, ï¿½Ù¿ï¿½Îµï¿½ï¿½ï¿½ ï¿½âº» ï¿½ï¿½ï¿½ï¿½
+		// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡ ï¿½ï¿½Î¸ï¿½ dbï¿½ï¿½ ï¿½Ö¾ï¿½ ï¿½Ò·ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Öµï¿½ï¿½ï¿½ ï¿½Ï°ï¿½, ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 		String realPath = servletContext.getRealPath("/resources/upload");
 		String today = new SimpleDateFormat("yyyyMMDD").format(new Date());
 		String saveFolder = realPath + today;
@@ -102,7 +102,7 @@ public class MenuController {
 		logger.info(saveFolder);
 		logger.debug(saveFolder);
 		
-		//°æ·Î¿¡ ÆÄÀÏÀÌ ÀÖ´ÂÁö È®ÀÎ //¾øÀ¸¸é ÆÄÀÏÀ» ¸¸µë
+		//ï¿½ï¿½Î¿ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´ï¿½ï¿½ï¿½ È®ï¿½ï¿½ //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 		File folder = new File(saveFolder);
 		if(!folder.exists()) {
 			folder.mkdir();
@@ -111,20 +111,20 @@ public class MenuController {
 		for(MultipartFile picFile : files) {
 			FileInfoDTO fileInfoDTO = new FileInfoDTO();
 			String originalFileName = picFile.getOriginalFilename();
-			//ÆÄÀÏ¸íÀÌ ÀÖ´Ù¸é
+			//ï¿½ï¿½ï¿½Ï¸ï¿½ï¿½ï¿½ ï¿½Ö´Ù¸ï¿½
 			if(!originalFileName.isEmpty()) {
-				//ÆÄÀÏ¸í Áßº¹À» ¸·±â À§ÇØ UUID¸¦ »ç¿ë
-				//ÆÄÀÏ¸íÀº È®ÀåÀÚ¸¦ »©¼­ ÀúÀå
+				//ï¿½ï¿½ï¿½Ï¸ï¿½ ï¿½ßºï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ UUIDï¿½ï¿½ ï¿½ï¿½ï¿½
+				//ï¿½ï¿½ï¿½Ï¸ï¿½ï¿½ï¿½ È®ï¿½ï¿½ï¿½Ú¸ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 				String saveFileName = UUID.randomUUID().toString() + originalFileName.substring(originalFileName.lastIndexOf("."));
 				fileInfoDTO.setORIGINALFILE(originalFileName);
 				fileInfoDTO.setSAVEFILE(saveFileName);
 				fileInfoDTO.setSAVEFOLDER(today);
 				logger.info(picFile.getOriginalFilename()+" "+saveFileName);
 				
-				//transferTo·Î ÆÄÀÏ ¾÷·Îµå Ã³¸® (¾î´À Æú´õ¿¡, ¾î¶² ÀÌ¸§À¸·Î)
+				//transferToï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Îµï¿½ Ã³ï¿½ï¿½ (ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½, ï¿½î¶² ï¿½Ì¸ï¿½ï¿½ï¿½ï¿½ï¿½)
 				picFile.transferTo(new File(folder,saveFileName));
 				
-				//ÆÄÀÏÀ» ´ãÀº DTO¸¦ ¹è¿­·Î ÀúÀå
+				//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ DTOï¿½ï¿½ ï¿½è¿­ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 				fileInfos.add(fileInfoDTO);
 			}
 		}
@@ -134,7 +134,7 @@ public class MenuController {
 		
 		int insertResult = 0;
 		
-		//»çÁø ÆÄÀÏÀÌ ÀúÀåÀÌ Àß µÇ¾ú´Ù¸é db¿¡ µî·ÏÀÌ µÉ ¼ö ÀÖµµ·Ï ÇÔ
+		//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Ç¾ï¿½ï¿½Ù¸ï¿½ dbï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ ï¿½Öµï¿½ï¿½ï¿½ ï¿½ï¿½
 		if(!fileInfos.isEmpty()) {
 			insertResult = menuSVC.menuRegister(menuDTO);
 			map.put("insertResult", insertResult);
@@ -145,23 +145,23 @@ public class MenuController {
 		return map;
 	}
 	
-	//»çÁø¸¸ ÀúÀå
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	@ResponseBody
 	@RequestMapping("savePic2")
 	public Map<String, Object> savePic2(@RequestParam("image") MultipartFile[] files, @RequestParam("MENU_NUM") int MENU_NUM, @ModelAttribute MenuDTO menuDTO, HttpServletRequest request) throws Exception, IOException {
 		
-		//json¹®ÀÚ¿­À» º¸³»±â À§ÇÔ
+		//jsonï¿½ï¿½ï¿½Ú¿ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 		Map<String, Object> map = new HashMap<String, Object>();
 		
-		// ÆÄÀÏ ¾÷·Îµå, ´Ù¿î·ÎµåÀÇ ±âº» °³³ä
-		// ÆÄÀÏ À§Ä¡ °æ·Î¸¦ db¿¡ ³Ö¾î ºÒ·¯¿Ã ¼ö ÀÖµµ·Ï ÇÏ°í, ½ÇÁ¦·Î Æú´õ¸¦ ¸¸µé¾î ³ÖÀ½
+		// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Îµï¿½, ï¿½Ù¿ï¿½Îµï¿½ï¿½ï¿½ ï¿½âº» ï¿½ï¿½ï¿½ï¿½
+		// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡ ï¿½ï¿½Î¸ï¿½ dbï¿½ï¿½ ï¿½Ö¾ï¿½ ï¿½Ò·ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Öµï¿½ï¿½ï¿½ ï¿½Ï°ï¿½, ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 		String realPath = servletContext.getRealPath("/resources/upload");
 		String today = new SimpleDateFormat("yyyyMMdd").format(new Date());
 		String saveFolder = realPath + today;
 		logger.info(saveFolder);
 		
 		
-		//°æ·Î¿¡ ÆÄÀÏÀÌ ÀÖ´ÂÁö È®ÀÎ //¾øÀ¸¸é ÆÄÀÏÀ» ¸¸µë
+		//ï¿½ï¿½Î¿ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´ï¿½ï¿½ï¿½ È®ï¿½ï¿½ //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 		File folder = new File(saveFolder);
 		if(!folder.exists()) {
 			folder.mkdir();
@@ -170,19 +170,19 @@ public class MenuController {
 		for(MultipartFile picFile : files) {
 			FileInfoDTO fileInfoDTO = new FileInfoDTO();
 			String originalFileName = picFile.getOriginalFilename();
-			//ÆÄÀÏ¸íÀÌ ÀÖ´Ù¸é
+			//ï¿½ï¿½ï¿½Ï¸ï¿½ï¿½ï¿½ ï¿½Ö´Ù¸ï¿½
 			if(!originalFileName.isEmpty()) {
-				//ÆÄÀÏ¸í Áßº¹À» ¸·±â À§ÇØ UUID¸¦ »ç¿ë
-				//ÆÄÀÏ¸íÀº È®ÀåÀÚ¸¦ »©¼­ ÀúÀå
+				//ï¿½ï¿½ï¿½Ï¸ï¿½ ï¿½ßºï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ UUIDï¿½ï¿½ ï¿½ï¿½ï¿½
+				//ï¿½ï¿½ï¿½Ï¸ï¿½ï¿½ï¿½ È®ï¿½ï¿½ï¿½Ú¸ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 				String saveFileName = UUID.randomUUID().toString() + originalFileName.substring(originalFileName.lastIndexOf("."));
 				fileInfoDTO.setORIGINALFILE(originalFileName);
 				fileInfoDTO.setSAVEFILE(saveFileName);
 				fileInfoDTO.setSAVEFOLDER(today);
 				logger.info(picFile.getOriginalFilename()+" "+saveFileName);
-				//transferTo·Î ÆÄÀÏ ¾÷·Îµå Ã³¸® (¾î´À Æú´õ¿¡, ¾î¶² ÀÌ¸§À¸·Î)
+				//transferToï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Îµï¿½ Ã³ï¿½ï¿½ (ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½, ï¿½î¶² ï¿½Ì¸ï¿½ï¿½ï¿½ï¿½ï¿½)
 				picFile.transferTo(new File(folder,saveFileName));
 				
-				//ÆÄÀÏÀ» ´ãÀº DTO¸¦ ¹è¿­·Î ÀúÀå
+				//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ DTOï¿½ï¿½ ï¿½è¿­ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 				fileInfos.add(fileInfoDTO);
 			}
 		}
@@ -191,7 +191,7 @@ public class MenuController {
 		
 		int insertResult = 0;
 		
-		//»çÁø ÆÄÀÏÀÌ ÀúÀåÀÌ Àß µÇ¾ú´Ù¸é db¿¡ µî·ÏÀÌ µÉ ¼ö ÀÖµµ·Ï ÇÔ
+		//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Ç¾ï¿½ï¿½Ù¸ï¿½ dbï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ ï¿½Öµï¿½ï¿½ï¿½ ï¿½ï¿½
 		if(!fileInfos.isEmpty()) {
 			insertResult = menuSVC.menuPicInsert(menuDTO);
 			map.put("insertResult", insertResult);
@@ -203,23 +203,23 @@ public class MenuController {
 	}
 	
 	
-	//»çÁø »èÁ¦
+	//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	@ResponseBody
 	@RequestMapping("menuPicDelete")
 	public String menuDelete(@RequestParam("SAVEFILE") String SAVEFILE) {
 		
 		int deleteResult = menuSVC.menuPicDelete(SAVEFILE);
 		if(deleteResult > 0) {
-			System.out.println("menuDelete ¼º°ø");
+			System.out.println("menuDelete ï¿½ï¿½ï¿½ï¿½");
 			return "1";
 		} else {
-			System.out.println("menuDelete ½ÇÆÐ");
+			System.out.println("menuDelete ï¿½ï¿½ï¿½ï¿½");
 			return "0";
 		}
 	}
 		
 	
-	//¸Þ´º Á¤º¸ Ãâ·Â
+	//ï¿½Þ´ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
 	@ResponseBody
 	@RequestMapping("menuList")
 	public Map<String, Object> menuList(@RequestParam("ST_CODE") int ST_CODE){
@@ -231,7 +231,7 @@ public class MenuController {
 		return map;
 	}
 	
-	//¸Þ´º »ó¼¼ Á¤º¸ Ãâ·Â
+	//ï¿½Þ´ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
 	@ResponseBody
 	@RequestMapping("menuDetail")
 	public Map<String, Object> menuDetail(@RequestParam("MENU_NUM") int MENU_NUM){
@@ -243,7 +243,7 @@ public class MenuController {
 		return map;
 	}
 	
-	//¸Þ´º »çÁø Á¤º¸ Ãâ·Â
+	//ï¿½Þ´ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
 	@ResponseBody
 	@RequestMapping("picList")
 	public Map<String, Object> picList(@RequestParam("MENU_NUM") int MENU_NUM){
@@ -255,12 +255,12 @@ public class MenuController {
 		return map;
 	}
 	
-	//¸Þ´º ¼öÁ¤
+	//ï¿½Þ´ï¿½ ï¿½ï¿½ï¿½ï¿½
 	@ResponseBody
 	@RequestMapping("menuModify")
 	public String menuModify(@ModelAttribute MenuDTO menuDTO, HttpServletRequest request){
 		
-		//ÃßÈÄ ¼¼¼Ç °ªÀ¸·Î ¹Ù²Ü ¼ö ÀÖµµ·Ï ÇÔ
+		//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ù²ï¿½ ï¿½ï¿½ ï¿½Öµï¿½ï¿½ï¿½ ï¿½ï¿½
 		String MENU_UPDMANAGER = "bum";
 //		HttpSession session = request.getSession();
 //		if(session.getAttribute("CUST_ID") != null) {
@@ -274,25 +274,25 @@ public class MenuController {
 		int updateResult = menuSVC.menuModify(menuDTO);
 		
 		if(updateResult == 1) {
-			System.out.println("menuModify ¼º°ø");
+			System.out.println("menuModify ï¿½ï¿½ï¿½ï¿½");
 			return "1";
 		} else {
-			System.out.println("menuModify ½ÇÆÐ");
+			System.out.println("menuModify ï¿½ï¿½ï¿½ï¿½");
 			return "0";
 		}
 	}
 	
-	//¸Þ´º »èÁ¦
+	//ï¿½Þ´ï¿½ ï¿½ï¿½ï¿½ï¿½
 	@ResponseBody
 	@RequestMapping("menuDelete")
 	public String menuDelete(@RequestParam("MENU_NUM") int MENU_NUM) {
 		
 		int deleteResult = menuSVC.menuDelete(MENU_NUM);
 		if(deleteResult == 1) {
-			System.out.println("menuDelete ¼º°ø");
+			System.out.println("menuDelete ï¿½ï¿½ï¿½ï¿½");
 			return "1";
 		} else {
-			System.out.println("menuDelete ½ÇÆÐ");
+			System.out.println("menuDelete ï¿½ï¿½ï¿½ï¿½");
 			return "0";
 		}
 		

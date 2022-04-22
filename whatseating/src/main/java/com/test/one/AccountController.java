@@ -24,7 +24,7 @@ public class AccountController {
 	@Autowired
 	AccountSVC service;
 	
-    //ajax 濡쒓렇�씤 泥섎━ 
+	//ajax 로그인 처리 
 	@RequestMapping("/ajaxlogin")
 	public String loginCheck(AccountDto dto,HttpSession session) {
 		
@@ -41,7 +41,7 @@ public class AccountController {
 		return "ajaxlogin";
 	}
  
-    //濡쒓렇�븘�썐 泥섎━ 
+	 //로그아웃 처리 
     @RequestMapping(value="logout.do", method=RequestMethod.POST)
     @ResponseBody
     public void logout(HttpSession session){
@@ -50,13 +50,13 @@ public class AccountController {
         //System.out.println("???");
     }
     
-    //�븘�씠�뵒&鍮꾨�踰덊샇 李얘린 �뤌
+    //아이디&비밀번호 찾기 폼
     @RequestMapping("/find_id_pw")
 	public String IdCheckform() {
     	return "find_id_pw";
 	}
     
-    //�븘�씠�뵒 李얘린 
+    //아이디 찾기 
     @RequestMapping(value="/IdCheck", method=RequestMethod.POST)
     @ResponseBody
 	public String IdCheck(HttpServletResponse response, @RequestParam("CUST_PHNO") String CUST_PHNO, Model m) throws Exception{
@@ -65,7 +65,7 @@ public class AccountController {
 		return "IdCheck";
 	}
     
-    //鍮꾨�踰덊샇 李얘린 
+    //비밀번호 찾기 
     @RequestMapping(value="/PwChange", method=RequestMethod.POST)
     @ResponseBody
     public void PwChange(HttpServletResponse response, @ModelAttribute AccountDto dto) throws IOException {
