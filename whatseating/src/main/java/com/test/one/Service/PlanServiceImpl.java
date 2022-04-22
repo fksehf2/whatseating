@@ -8,15 +8,10 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.apache.tomcat.util.json.JSONParser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.google.gson.Gson;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
 import com.test.one.Repository.PlanDao;
 import com.test.one.Vo.PlanDto;
 
@@ -28,76 +23,76 @@ public class PlanServiceImpl implements PlanService {
 	@Override
 	public void storeList(HttpServletRequest request) {
 	
-		//한 페이지에 몇개씩 표시할 것인지
+		//�븳 �럹�씠吏��뿉 紐뉕컻�뵫 �몴�떆�븷 寃껋씤吏�
 		final int PAGE_ROW_COUNT=5;
-		//하단 페이지를 몇개씩 표시할 것인지
+		//�븯�떒 �럹�씠吏�瑜� 紐뉕컻�뵫 �몴�떆�븷 寃껋씤吏�
 		final int PAGE_DISPLAY_COUNT=5;
 				
-		//보여줄 페이지의 번호를 일단 1이라고 초기값 지정
+		//蹂댁뿬以� �럹�씠吏��쓽 踰덊샇瑜� �씪�떒 1�씠�씪怨� 珥덇린媛� 吏��젙
 		int pageNum=1;
-		//페이지 번호가 파라미터로 전달되는지 읽어와 본다.
+		//�럹�씠吏� 踰덊샇媛� �뙆�씪誘명꽣濡� �쟾�떖�릺�뒗吏� �씫�뼱�� 蹂몃떎.
 		String strPageNum=request.getParameter("pageNum");
-		//만일 페이지 번호가 파라미터로 넘어 온다면
+		//留뚯씪 �럹�씠吏� 踰덊샇媛� �뙆�씪誘명꽣濡� �꽆�뼱 �삩�떎硫�
 		if(strPageNum != null){
-		//숫자로 바꿔서 보여줄 페이지 번호로 지정한다.
+		//�닽�옄濡� 諛붽퓭�꽌 蹂댁뿬以� �럹�씠吏� 踰덊샇濡� 吏��젙�븳�떎.
 		pageNum=Integer.parseInt(strPageNum);
 		}
 				
-		//보여줄 페이지의 시작 ROWNUM
+		//蹂댁뿬以� �럹�씠吏��쓽 �떆�옉 ROWNUM
 		int startRowNum=1+(pageNum-1)*PAGE_ROW_COUNT;
-		//보여줄 페이지의 끝 ROWNUM
+		//蹂댁뿬以� �럹�씠吏��쓽 �걹 ROWNUM
 		int endRowNum=pageNum*PAGE_ROW_COUNT;
 				
 		/*
-			[ 검색 키워드에 관련된 처리 ]
-			 -검색 키워드가 파라미터로 넘어올수도 있고 안넘어 올수도 있다.		
+			[ 寃��깋 �궎�썙�뱶�뿉 愿��젴�맂 泥섎━ ]
+			 -寃��깋 �궎�썙�뱶媛� �뙆�씪誘명꽣濡� �꽆�뼱�삱�닔�룄 �엳怨� �븞�꽆�뼱 �삱�닔�룄 �엳�떎.		
 		*/
 		String keyword=request.getParameter("keyword");
 		String condition=request.getParameter("condition");
-		//만일 키워드가 넘어오지 않는다면 
+		//留뚯씪 �궎�썙�뱶媛� �꽆�뼱�삤吏� �븡�뒗�떎硫� 
 		if(keyword==null){
-			//키워드와 검색 조건에 빈 문자열을 넣어준다. 
-			//클라이언트 웹브라우저에 출력할때 "null" 을 출력되지 않게 하기 위해서  
+			//�궎�썙�뱶�� 寃��깋 議곌굔�뿉 鍮� 臾몄옄�뿴�쓣 �꽔�뼱以��떎. 
+			//�겢�씪�씠�뼵�듃 �쎒釉뚮씪�슦���뿉 異쒕젰�븷�븣 "null" �쓣 異쒕젰�릺吏� �븡寃� �븯湲� �쐞�빐�꽌  
 			keyword="";
 			condition=""; 
 			}
 
-		//특수기호를 인코딩한 키워드를 미리 준비한다. 
+		//�듅�닔湲고샇瑜� �씤肄붾뵫�븳 �궎�썙�뱶瑜� 誘몃━ 以�鍮꾪븳�떎. 
 		String encodedK=URLEncoder.encode(keyword);
 					
-		//CafeDto 객체에 startRowNum 과 endRowNum 을 담는다.
+		//CafeDto 媛앹껜�뿉 startRowNum 怨� endRowNum �쓣 �떞�뒗�떎.
 			PlanDto dto=new PlanDto();
 			dto.setStartRowNum(startRowNum);
 			dto.setEndRowNum(endRowNum);
 
-		//만일 검색 키워드가 넘어온다면 
+		//留뚯씪 寃��깋 �궎�썙�뱶媛� �꽆�뼱�삩�떎硫� 
 			if(!keyword.equals("")){
-				//검색 조건이 무엇이냐에 따라 분기 하기
-				if(condition.equals("ST_NAME")){//가게이름 검색인 경우
-					//검색 키워드를 dto 에 담아서 전달한다.
+				//寃��깋 議곌굔�씠 臾댁뾿�씠�깘�뿉 �뵲�씪 遺꾧린 �븯湲�
+				if(condition.equals("ST_NAME")){//媛�寃뚯씠由� 寃��깋�씤 寃쎌슦
+					//寃��깋 �궎�썙�뱶瑜� dto �뿉 �떞�븘�꽌 �쟾�떖�븳�떎.
 					dto.setST_NAME(keyword);
-		    	  }else if(condition.equals("ST_ADDRESSDETAIL")){ //주소 검색인 경우
+		    	  }else if(condition.equals("ST_ADDRESSDETAIL")){ //二쇱냼 寃��깋�씤 寃쎌슦
 						dto.setST_ADDRESSDETAIL(keyword);
 		    	  }
 			}
-		//글 목록 얻어오기 
+		//湲� 紐⑸줉 �뼸�뼱�삤湲� 
 		  List<PlanDto> list=dao.storeList(dto);
-		//전체글의 갯수
+		//�쟾泥닿��쓽 媛��닔
 		  int totalRow=dao.getCount(dto);
 				
-		//하단 시작 페이지 번호 
+		//�븯�떒 �떆�옉 �럹�씠吏� 踰덊샇 
 		  int startPageNum = 1 + ((pageNum-1)/PAGE_DISPLAY_COUNT)*PAGE_DISPLAY_COUNT;
-		//하단 끝 페이지 번호
+		//�븯�떒 �걹 �럹�씠吏� 踰덊샇
 		  int endPageNum=startPageNum+PAGE_DISPLAY_COUNT-1;
 				
 
-		//전체 페이지의 갯수
+		//�쟾泥� �럹�씠吏��쓽 媛��닔
 		  int totalPageCount=(int)Math.ceil(totalRow/(double)PAGE_ROW_COUNT);
-		//끝 페이지 번호가 전체 페이지 갯수보다 크다면 잘못된 값이다.
+		//�걹 �럹�씠吏� 踰덊샇媛� �쟾泥� �럹�씠吏� 媛��닔蹂대떎 �겕�떎硫� �옒紐삳맂 媛믪씠�떎.
 		  if(endPageNum > totalPageCount){
-			endPageNum=totalPageCount; //보정해 준다.
+			endPageNum=totalPageCount; //蹂댁젙�빐 以��떎.
 			}
-		  //view page 에서 필요한 값을 request 에 담아준다. 
+		  //view page �뿉�꽌 �븘�슂�븳 媛믪쓣 request �뿉 �떞�븘以��떎. 
 			request.setAttribute("pageNum", pageNum);
 			request.setAttribute("startPageNum", startPageNum);
 			request.setAttribute("endPageNum", endPageNum);
