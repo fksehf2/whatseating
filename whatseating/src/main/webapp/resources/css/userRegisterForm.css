@@ -48,7 +48,7 @@
 		position: relative;
 	}
 	.inputbox input[name='CUST_ID'] {
-		width: 86%;
+		width: 420px;
 		padding: 13px 15px;
 		font-size: 11pt;
 		outline: transparent;
@@ -156,7 +156,7 @@
 		margin-top: 17px;
 	}
 	.emailbox{
-		width: 410px;
+		width: 420px;
 		height: 45px;
 		margin-top: 17px;
 		display: flex;
@@ -221,56 +221,57 @@
 		margin-left: -8px;
 	}
 	.inputbox input[name='CUST_PW'] {
-		width: 86%;
+		width: 420px;
 		padding: 13px 15px;
 		font-size: 11pt;
 		outline: transparent;
 	}
 	.inputbox input[name='CUST_PW2'] {
-		width: 86%;
+		width: 420px;
 		padding: 13px 15px;
 		font-size: 11pt;
 		outline: transparent;
 	}
 	.inputbox input[name='CUST_NAME'] {
-		width: 86%;
+		width: 420px;
 		padding: 13px 15px;
 		font-size: 11pt;
 		outline: transparent;
 	}
 	.inputbox input[name='CUST_PHNO'] {
-		width: 86%;
+		width: 420px;
 		padding: 13px 15px;
 		font-size: 11pt;
 		outline: transparent;
 	}
 	.emailinputbox input[name='CUST_EMAIL'] {
-		width: 95%;
+		width: 200px;
 		padding: 13px 15px;
 		font-size: 11pt;
 		outline: transparent;
 	}
 	select[name='CUST_EMAIL2'] {
-		width: 49%;
+		width: 200px;
+		height:49px;
 		padding: 13px 15px;
 		font-size: 11pt;
 		outline: transparent;
 	}
 	#sample6_postcode{
-		width: 49%;
+		width: 210px;
 		padding: 13px 15px;
 		font-size: 11pt;
 		outline: transparent;
 	}
 	#sample6_address {
-		width: 99%;
+		width: 420px;
 		padding: 13px 15px;
 		font-size: 11pt;
 		outline: transparent;
 		margin-top: 5px;
 	}
 	#sample6_detailAddress, #sample6_extraAddress{
-		width: 49%;
+		width: 208px;
 		padding: 13px 15px;
 		font-size: 11pt;
 		outline: transparent;
@@ -281,7 +282,7 @@
 		top: 15px;
 		left: 11px;
 		color: #5f6368;
-		width: 88px;
+		width: 90px;
 		padding: 0 5px;
 		font-size: 11pt;
 	}
@@ -308,7 +309,7 @@
 		top: 15px;
 		left: 11px;
 		color: #5f6368;
-		width: 73px;
+		width: 75px;
 		padding: 0 5px;
 		font-size: 11pt;
 	}

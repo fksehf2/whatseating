@@ -72,7 +72,7 @@ h2 { text-align: center; }
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 
 <script>
-const logBtn=document.querySelector('#logBtn');
+/* const logBtn=document.querySelector('#logBtn');
 logBtn.addEventListener('click', ()=>{
 	const id=document.querySelector("#id").value;
 	const pw=document.querySelector("#pw").value;
@@ -83,13 +83,13 @@ logBtn.addEventListener('click', ()=>{
 	$.ajax({
 	        type:"POST", //url 정보가 보임
 	        url:"/ajaxlogin.do",
-	        /* data : JSON.stringfy(logData),
-	        contentType : "application/json", */
+	         data : JSON.stringfy(logData),
+	        contentType : "application/json", 
 	        success:function(){
 	        	document.location.reload();
 	        	}
 	        }); 
-        });
+        }); */
 function logout(){
 	    $.ajax({
 	        type:"POST",

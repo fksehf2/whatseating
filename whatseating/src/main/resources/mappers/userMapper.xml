@@ -1,8 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="mappers.userMapper">
+	<select id="login" parameterType="String" resultType="String">
+		select CUST_PW from ACCOUNT_DATA where CUST_ID = #{CUST_ID}
+	</select>
+	
+	<select id="typeCheck" parameterType="String" resultType="String">
+		select CUST_TYPE from ACCOUNT_DATA where CUST_ID = #{CUST_ID}
+	</select>
+	
 	<select id="userInfo" resultType="accountDTO">
 		select * from ACCOUNT_DATA where CUST_ID = #{CUST_ID}
+	</select>
+	
+	<select id="iddbCheck" parameterType="String">
+		select count(*) from ACCOUNT_DATA where CUST_ID = #{CUST_ID}
 	</select>
 	
 	<insert id="userRegister" parameterType="accountDTO">

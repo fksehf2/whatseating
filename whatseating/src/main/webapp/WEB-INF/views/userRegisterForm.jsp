@@ -125,10 +125,10 @@
 				<!---------------이용 서비스 방법---------------->
 				<div class="susinbox">
 					<label for="type1">
-						<input type="radio" name="CUST_TYPE" value="회원" id="type1">회원
+						<input type="radio" name="CUST_TYPE" value="1" id="type1" checked>회원
 					</label>
 					<label for="type2">
-						<input type="radio" name="CUST_TYPE" value="점주" id="type2">점주
+						<input type="radio" name="CUST_TYPE" value="2" id="type2">점주
 					</label>
 				</div>
 				<div class="gaipbtn">

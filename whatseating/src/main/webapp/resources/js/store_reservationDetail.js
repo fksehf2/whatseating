@@ -32,6 +32,15 @@ $(function(){
     $("#storeAdd_close").click(function() {
         $('#storeAddModal').hide();
         });
+        
+    //개인정보 상세보기 모달
+    $("#membershipInfo").click(function() {
+        $('#accountInfoModal').show();
+        });
+        //팝업 Close 기능
+    $("#accountInfo_close,#cancelBtn").click(function() {
+        $('#accountInfoModal').hide();
+        });
     
     //수정 버튼이 눌리면 수정 완료 버튼 활성화되고 disabled가 풀림
     $(".modifyBtn").on("click",function(){

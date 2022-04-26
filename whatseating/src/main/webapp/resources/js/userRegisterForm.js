@@ -7,7 +7,7 @@ $(function(){
  	 			"font-size": "10pt",
  	 			"top":"-10px",
  	 			"background-color": "white",
- 	 			"width": "76px",
+ 	 			"width": "77px",
  	 			"padding-right": "0px",
  	 			"transition" : ".5s"
  	 		});
@@ -23,7 +23,7 @@ $(function(){
 	 			"font-size": "10pt",
 	 			"top":"-10px",
 	 			"background-color": "white",
-	 			"width": "76px",
+	 			"width": "77px",
 	 			"padding-right": "0px",
 	 			"transition" : ".5s"
 	 		});
@@ -52,7 +52,7 @@ $(function(){
  			"font-size": "10pt",
  			"top":"-10px",
  			"background-color": "white",
- 			"width": "89px",
+ 			"width": "90px",
  			"padding-right": "0px",
  			"transition" : ".5s"
  		});
@@ -68,7 +68,7 @@ $(function(){
 	 			"font-size": "10pt",
 	 			"top":"-10px",
 	 			"background-color": "white",
-	 			"width": "89px",
+	 			"width": "90px",
 	 			"padding-right": "0px",
 	 			"transition" : ".5s"
 	 		});
@@ -97,7 +97,7 @@ $(function(){
  			"font-size": "10pt",
  			"top":"-10px",
  			"background-color": "white",
- 			"width": "89px",
+ 			"width": "90px",
  			"padding-right": "0px",
  			"transition" : ".5s"
  		});
@@ -113,7 +113,7 @@ $(function(){
 	 			"font-size": "10pt",
 	 			"top":"-10px",
 	 			"background-color": "white",
-	 			"width": "89px",
+	 			"width": "90px",
 	 			"padding-right": "0px",
 	 			"transition" : ".5s"
 	 		});
@@ -273,7 +273,7 @@ $(function(){
  			"font-size": "10pt",
  			"top":"-10px",
  			"background-color": "white",
- 			"width": "89px",
+ 			"width": "92px",
  			"padding-right": "0px",
  			"transition" : ".5s"
  		});
@@ -289,7 +289,7 @@ $(function(){
 	 			"font-size": "10pt",
 	 			"top":"-10px",
 	 			"background-color": "white",
-	 			"width": "89px",
+	 			"width": "90px",
 	 			"padding-right": "0px",
 	 			"transition" : ".5s"
 	 		});
@@ -302,7 +302,7 @@ $(function(){
 				"top": "11px",
 		        "left": "11px",
 		        "color": "#5f6368",
-		        "width": "86px",
+		        "width": "89px",
 		        "padding": "0 5px",
 		        "font-size":"11pt"
 				});
@@ -319,7 +319,7 @@ $(function(){
 	 			"font-size": "10pt",
 	 			"top":"-10px",
 	 			"background-color": "white",
-	 			"width": "76px",
+	 			"width": "78px",
 	 			"padding-right": "0px",
 	 			"transition" : ".5s"
 	 		});
@@ -347,7 +347,7 @@ $(function(){
  			"font-size": "10pt",
  			"top":"-10px",
  			"background-color": "white",
- 			"width": "76px",
+ 			"width": "78px",
  			"padding-right": "0px",
  			"transition" : ".5s"
  		});
@@ -382,6 +382,7 @@ $(function(){
 				url:"iddbCheck",
 				data:{id:id},
 				success:function(result){  // 계속 '실패' 오작동이 됨 
+				console.log(result.idCheck);
 					if(result.idCheck == 1){
 						$(".iddetail").html("사용할 수 없는 아이디 입니다.");
 						$(".iddetail").attr("style","color:#e52528;");

@@ -1,7 +1,8 @@
 $(function(){
 	
 	//이 부분 세션 값 아이디 필요
-	var st_manager = {id : "bum"};
+	var st_manager = {id : sessionStorage.getItem("CUST_ID")};
+	console.log(sessionStorage.getItem("CUST_ID"));
 	var result = [];
 	var storeCount = 0;
 	var contextPath = getContext;
@@ -59,6 +60,7 @@ $(function(){
 						$(".store_title").html(result.st_NAME);
 						
 						$("#storeForm, #menuForm").find("input[name='ST_CODE']").attr("value",result.st_CODE);
+						
 						$("#storeForm").find("input[name='ST_NAME']").attr("value",result.st_NAME);
 						$("#storeForm").find("input[name='ST_ADDRESSNO']").attr("value",result.st_ADDRESSNO);
 						$("#storeForm").find("input[name='ST_ADDRESSBASIC']").attr("value",result.st_ADDRESSBASIC);
@@ -68,6 +70,10 @@ $(function(){
 						$("#storeForm").find("input[name='ST_STARTTIME']").attr("value",result.st_STARTTIME);
 						$("#storeForm").find("input[name='ST_ENDTIME']").attr("value",result.st_ENDTIME);
 						$("#storeForm").find("input[name='ST_CONTENT']").attr("value",result.st_CONTENT);
+						
+						$("#detailInfo").on("click",function(){
+							map_view($("#storeForm").find("input[name='ST_ADDRESSBASIC']").val());
+						});
 						
 						//매장 삭제 관련
 						$(".deleteBtn").on("click",function(){
@@ -156,7 +162,7 @@ $(function(){
 						});
 					
 					//메뉴 폼이 서브밋 될 때,
-					$("#menuDetailForm").on("submit",function(){
+					$("#menuUpdateBtn").on("click",function(){
 						$.ajax({
 							type : "post",
 							data : $("#menuDetailForm").serialize(),
@@ -220,7 +226,8 @@ $(function(){
 									$(".upload-fileView").empty();
 									$.each(picInfo, function(idx, item){
 										//사진을 보여줄 때, 저정된 파일 위치의 사진으로 보여줘야 하는지??
-										body += "<div><img src='/fileUpload/resources/upload"+item.savefolder+"/"+item.savefile+"' class='bx-img'></div>";
+										body += "<div><img src='"+$("#getContextPath").val()+"/resources/upload"+item.savefolder+"/"+item.savefile+"' class='bx-img'></div>";
+										/*body += "<div><img src='/fileUpload/upload"+item.savefolder+"/"+item.savefile+"' class='bx-img'></div>";*/
 										
 										//현재 사진의 대한 정보도 보여줄 수 있도록 함
 										originalUpload = "";
@@ -258,6 +265,10 @@ $(function(){
 												console.log(deleteResult);
 												if(deleteResult == 1){
 													alert("사진이 삭제 되었습니다.");
+													$("#menuPicUpdateBtn").css("display","none");
+													$("#menuPicModifyBtn").css("display","inline-block");
+													$(".picAddFrame").css("display","none");
+													$(".upload-fileView").css("display","none");
 												}
 											}, error : function(){
 												alert("사진이 삭제 되지 않았습니다.");
@@ -364,7 +375,7 @@ $(function(){
 		
 		
 		//사진 수정 완료 버튼 클릭 시,
-		$("#menuPicForm").on("submit",function(){
+		$("#menuPicUpdateBtn").on("click",function(){
 			var formdata = new FormData($("#menuPicForm")[0]);
 			var MENU_NUM = $(this).find("input[name='MENU_NUM']").val();
 			
@@ -385,7 +396,6 @@ $(function(){
 						alert("사진 수정이 완료되었습니다.");
 						$("#menuPicUpdateBtn").css("display","none");
 						$("#menuPicModifyBtn").css("display","inline-block");
-						location.reload();
 				}, error : function(){
 					alert("사진이 수정되지 않았습니다.");
 				}
@@ -405,23 +415,64 @@ $(function(){
 			return contextPath;
 		}
 		
-		$("#menuPicUpdateBtn").on("click",function(){
-			$("#menuPicForm").submit();
-		});
-		$("#menuUpdateBtn").on("click",function(){
-			$("#menuDetailForm").submit();
-		});
-		
 		function modal_openMenuDetail(){
 			$("#menuPicModifyBtn").css("display","none");
 			$("#menuPicUpdateBtn").css("display","inline-block");
 			$("#picUploadBtn").css("display","block");
 			$("#uploadInfo").css("display","block");
 			$(".upload-fileView").css("display","block");
+			$(".picAddFrame").css("display","block");
 		}
 		
 		function modal_closeMenuDetail(){
         	$("#realPicUpload").val("");
+		}
+		
+		/* 카카오 지도 function */
+		function map_view(map_address){
+			/* 카카오 지도 api */
+			var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+			    mapOption = {
+			        center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
+			        level: 3 // 지도의 확대 레벨
+			    };  
+			
+			// 지도를 생성합니다    
+			var map = new kakao.maps.Map(mapContainer, mapOption); 
+			
+			// 주소-좌표 변환 객체를 생성합니다
+			var geocoder = new kakao.maps.services.Geocoder();
+			
+			// 주소로 좌표를 검색합니다
+			geocoder.addressSearch( map_address , function(result, status) {
+			
+			    // 정상적으로 검색이 완료됐으면 
+			     if (status === kakao.maps.services.Status.OK) {
+			
+			        var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+			        
+			        console.log(coords);
+			
+			        // 결과값으로 받은 위치를 마커로 표시합니다
+			        var marker = new kakao.maps.Marker({
+			            map: map,
+			            position: coords
+			        });
+			
+			        // 인포윈도우로 장소에 대한 설명을 표시합니다
+			        var infowindow = new kakao.maps.InfoWindow({
+			            content: '<div style="width:150px;text-align:center;padding:6px 0;">매장1</div>'
+			        });
+			        infowindow.open(map, marker);
+			        
+			        //지도 디자인의 변화(block, none)가 있을 시 map.relayout()을 통해 다시 map을 그려줄 수 있도록 함
+					setTimeout(function(){ map.relayout(); }, 500);
+					
+					//중심점을 잡지 못함
+					// 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
+			        map.setCenter(coords);
+			    }
+			});
 		}
 		
 });

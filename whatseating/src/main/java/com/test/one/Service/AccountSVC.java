@@ -127,8 +127,8 @@ public class AccountSVC {
 		return deleteResult;
 	}
 	
-	public int userUpdate(String CUST_ID) {
-		int updateResult = accountDAO.userUpdate(CUST_ID);
+	public int userUpdate(AccountDto accountDTO) {
+		int updateResult = accountDAO.userUpdate(accountDTO);
 		return updateResult;
 	}
 	
@@ -136,6 +136,24 @@ public class AccountSVC {
 	public int userIdCheck(String CUST_ID) {
 		int idCheck = accountDAO.userIdCheck(CUST_ID);
 		return idCheck;
+	}
+	
+	//아이디 중복 체크
+	public int iddbCheck(String CUST_ID) {
+		int iddbCheck = accountDAO.iddbCheck(CUST_ID);
+		return iddbCheck;
+	}
+	
+	//로그인
+	public String login(String CUST_ID) {
+		String login = accountDAO.login(CUST_ID);
+		return login;
+	}
+	
+	//회원 서비스 체크
+	public String typeCheck(String CUST_ID) {
+		String typeCheck = accountDAO.typeCheck(CUST_ID);
+		return typeCheck;
 	}
 
 }

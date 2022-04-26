@@ -11,9 +11,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class HomeController {
 	
 		//home 이동 요청
-		@RequestMapping({"/","/home"})
+		@RequestMapping({"/home"})
 		public String home() {
-			return "home";
+			return "loginPage";
 		}
 		
 		

@@ -27,7 +27,7 @@ public class AccountRegissterController {
 	@Autowired
 	private AccountSVC accountSVC;
 	
-	//È¸¿ø°¡ÀÔ È®ÀÎ ÆäÀÌÁö
+	//È¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ È®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	@RequestMapping(value = "confirm")
 	public String userInfo(HttpServletRequest request ,Model model) {
 		
@@ -43,49 +43,62 @@ public class AccountRegissterController {
 		return "accountConfirm";
 	}
 	
-	//È¸¿ø°¡ÀÔ ¾ç½Ä ÆäÀÌÁö
+	//È¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	@RequestMapping(value = "registerForm")
 	public String userRegisterForm() {
 		
 		return "userRegisterForm";
 	}
 	
-	//È¸¿ø µî·ÏÀÌ µÇ¸é È¸¿ø »ó¼¼ º¸±â ÆäÀÌÁö·Î, µî·ÏÀÌ µÇÁö ¾ÊÀ¸¸é ¾ç½Ä ÆäÀÌÁö·Î º¸³¿
+	//È¸ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ç¸ï¿½ È¸ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½, ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	@RequestMapping(value = "userRegister")
 	public String userRegister(@ModelAttribute AccountDto accountDTO, HttpServletResponse response) throws Exception {
 		
 		int insertResult = accountSVC.userRegister(accountDTO);
 		if(insertResult == 1) {
-			System.out.println("insert ¼º°ø");
+			System.out.println("insert ï¿½ï¿½ï¿½ï¿½");
 			return "userDetail";
 		} else {
-			System.out.println("insert ½ÇÆĞ");
+			System.out.println("insert ï¿½ï¿½ï¿½ï¿½");
 			response.setContentType("text/html; charset=UTF-8");
 			PrintWriter out = response.getWriter();
 			out.println("<script>");
-			out.println("alert('È¸¿ø°¡ÀÔÀÌ µÇÁö ¾Ê¾Ò½À´Ï´Ù.');");
+			out.println("alert('È¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ê¾Ò½ï¿½ï¿½Ï´ï¿½.');");
 			out.println("</script>");
 			return "registerForm";
 		}
 		
 	}
 	
-	//È¸¿ø »ó¼¼ ÆäÀÌÁö
+	/*
+	 * //id ì¤‘ë³µ í™•ì¸
+	 * 
+	 * @ResponseBody
+	 * 
+	 * @RequestMapping(value = "iddbCheck") public String
+	 * iddbCheck(@RequestParam("id") String CUST_ID) throws Exception {
+	 * 
+	 * int iddbCheck = accountSVC.iddbCheck(CUST_ID); return iddbCheck+"";
+	 * 
+	 * }
+	 */
+	
+	
+	//ìœ ì € ì •ë³´
+	@ResponseBody
 	@RequestMapping(value = "userDetail")
-	public String userDetail(HttpServletRequest request, Model model) {
+	public Map<String, Object> userDetail(@RequestParam("id") String CUST_ID) {
 		
-		HttpSession session = request.getSession();
-		String CUST_ID = null;
-		if(session.getAttribute("CUST_ID") != null) {
-			CUST_ID = (String) session.getAttribute("CUST_ID");
-		}
+		Map<String, Object> map = new HashMap<String, Object>();
+		
 		AccountDto accountDTO = accountSVC.userInfo(CUST_ID);
-		model.addAttribute("accountDTO", accountDTO);
 		
-		return "userDetail";
+		map.put("accountDTO", accountDTO);
+		
+		return map;
 	}
 	
-	//È¸¿ø »èÁ¦ //ÆäÀÌÁö ÀÌµ¿ ¼³Á¤ ÇÊ¿ä
+	//È¸ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ìµï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ê¿ï¿½
 	@RequestMapping(value = "userDelete")
 	public String userDelete(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
@@ -96,46 +109,34 @@ public class AccountRegissterController {
 		}
 		int deleteResult = accountSVC.userDelete(CUST_ID);
 		if(deleteResult == 1) {
-			System.out.println("delete ¼º°ø");
-			return "ÀÎµ¦½º or ·Î±×ÀÎ ÆäÀÌÁö";
+			System.out.println("delete ï¿½ï¿½ï¿½ï¿½");
+			return "ï¿½Îµï¿½ï¿½ï¿½ or ï¿½Î±ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½";
 		} else {
-			System.out.println("delete ½ÇÆĞ");
+			System.out.println("delete ï¿½ï¿½ï¿½ï¿½");
 			response.setContentType("text/html; charset=UTF-8");
 			PrintWriter out = response.getWriter();
 			out.println("<script>");
-			out.println("alert('È¸¿ø »èÁ¦°¡ µÇÁö ¾Ê¾Ò½À´Ï´Ù.');");
+			out.println("alert('È¸ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ê¾Ò½ï¿½ï¿½Ï´ï¿½.');");
 			out.println("</script>");
-			return "ÀüÀ¸·Î";
+			return "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½";
 		}
 
 	}
 	
 	@ResponseBody
 	@RequestMapping(value = "userModify")
-	public String userModify(HttpServletRequest request, HttpServletResponse response) throws Exception {
+	public Map<String, Object> userModify(@ModelAttribute AccountDto accountDTO) throws Exception {
 		
-		HttpSession session = request.getSession();
-		String CUST_ID = null;
-		if(session.getAttribute("CUST_ID") != null) {
-			CUST_ID = (String) session.getAttribute("CUST_ID");
-		}
-		int updateResult = accountSVC.userUpdate(CUST_ID);
-		if(updateResult == 1) {
-			System.out.println("userUpdate ¼º°ø");
-			return "1";
-		} else {
-			System.out.println("userUpdate ½ÇÆĞ");
-			response.setContentType("text/html; charset=UTF-8");
-			PrintWriter out = response.getWriter();
-			out.println("<script>");
-			out.println("alert('È¸¿ø »èÁ¦°¡ µÇÁö ¾Ê¾Ò½À´Ï´Ù.');");
-			out.println("</script>");
-			return "0";
-		}
-
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		int updateResult = accountSVC.userUpdate(accountDTO);
+		
+		map.put("modifyResult", updateResult);
+		
+		return map;
 	}
 	
-	//idÁßº¹Ã¼Å©
+	//idï¿½ßºï¿½Ã¼Å©
 	@ResponseBody
 	@RequestMapping("iddbCheck")
 	public Map<String, Integer> userIddbCheck(@RequestParam("id") String CUST_ID){
@@ -148,6 +149,57 @@ public class AccountRegissterController {
 		return map;
 	}
 	
+	//ë¡œê·¸ì¸ ê¸°ëŠ¥
+	@ResponseBody
+	@RequestMapping("login")
+	public Map<String, Object> login(@RequestParam("id") String CUST_ID, @RequestParam("pw") String CUST_PW, HttpServletRequest request){
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		HttpSession session = request.getSession();
+		
+		int returnValue = 0;
+		
+		//ì™œ -1ë¡œ ë‚˜ì˜¤ëŠ”ì§€??
+		String login = accountSVC.login(CUST_ID);
+		if(!CUST_PW.equals(login)) {
+			returnValue = -1;
+		}else {
+			returnValue = 1;
+			
+		}
+		map.put("login", returnValue);
+		
+		return map;
+	}
+	
+	//íšŒì› ì„œë¹„ìŠ¤ ì²´í¬ ê¸°ëŠ¥
+	@ResponseBody
+	@RequestMapping("typeCheck")
+	public Map<String, Object> typeCheck(@RequestParam("id") String CUST_ID){
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		String typeCheck = accountSVC.typeCheck(CUST_ID);
+		map.put("typeCheck", typeCheck);
+		
+		return map;
+	}
+	
+	//ë¡œê·¸ì•„ì›ƒ ê¸°ëŠ¥
+	@ResponseBody
+	@RequestMapping("logoutFunction")
+	public int logoutFunction(HttpServletRequest request){
+		
+		HttpSession session = request.getSession();
+		session.removeAttribute("CUST_ID");
+		if(session.getAttribute("CUST_ID") != null) {
+			return 0;
+		}else {
+			return 1;
+		}
+		
+	}
 	
 
 }

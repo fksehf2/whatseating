@@ -21,7 +21,7 @@
 	
 	<!-- 필요한 mapper xml 등록하기 -->
 	<mappers>
-    	<mapper resource="mappers/StoreMapper.xml"/>
+    	<mapper resource="mappers/storeMapper.xml"/>
     	<mapper resource="mappers/CategoryMapper.xml"/>
      	<mapper resource="mappers/menuMapper.xml"/>
      	<mapper resource="mappers/userMapper.xml"/>

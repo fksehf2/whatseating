@@ -26,8 +26,10 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
 <script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/store_reservationDetail.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/commonsFunction.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/storeList.js"></script>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=3e1afd2e68637157d8390f4cad54a97e&libraries=services"></script>
 
 </head>
 <body>
@@ -135,9 +137,10 @@
 							<td>매장 주소</td>
 							<td class="first-row">
 								<input type="text" name="ST_ADDRESSNO" value="" disabled class="infoDisabled">
-								&nbsp;<input type="text" name="ST_ADDRESSBASIC" value="" disabled class="infoDisabled">
-								&nbsp;<input type="text" name="ST_ADDRESSDETAIL" value="" disabled class="infoDisabled">
-								<input type="hidden" name="ST_ADDRESSEXTRA" value="">
+								&nbsp;<input type="text" name="ST_ADDRESSBASIC" value="" disabled class="infoDisabled" id="map_stAddressBasic">
+								&nbsp;<input type="text" name="ST_ADDRESSDETAIL" value="" disabled class="infoDisabled" id="map_stAddressDetail">
+								<input type="hidden" name="ST_ADDRESSEXTRA" value="" id="map_stAddressExtra">
+								<div id="map" style="height:350px; margin-top: 10px;"></div>
 							</td>
 						</tr>
 						<tr class="table-col">
@@ -215,7 +218,7 @@
 	                    </tr>
                 </table>
 					<div class="btns">
-						<button type="button" class="btn btn-outline-success" id="uploadSubmit">등록</button>
+						<button type="button" class="btn btn-outline-success" id="reservationInfoSubmit">등록</button>
 						<button type="reset" class="btn btn-outline-danger">취소</button>
 					</div>
 				</form>
@@ -434,7 +437,7 @@
 						<button type="button" class="btn btn-outline-success" id="menuPicUpdateBtn">사진 수정 완료</button>
 						<button type="button" class="btn btn-outline-success" id="menuModifyBtn">메뉴 수정</button>
 						<button type="button" class="btn btn-outline-success" id="menuUpdateBtn">메뉴 수정 완료</button>
-						<button type="button" class="btn btn-outline-danger" id="menuDeleteBtn">삭제</button>
+						<button type="button" class="btn btn-outline-danger" id="menuDeleteBtn">메뉴 삭제</button>
 					</div>
 				</form>
 			</div>
@@ -542,6 +545,7 @@ function chkform(){
 		return false;
 	}
 } */
+
 
 </script>
 </body>

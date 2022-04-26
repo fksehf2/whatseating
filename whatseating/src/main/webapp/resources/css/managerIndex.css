@@ -97,8 +97,17 @@ button {outline: none; border: 1px solid #555;}
     background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
 }
 
+#detail-content {
+	background-color: #fefefe;
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 700px; /* Could be more or less, depending on screen size */   
+    position: relative;   
+}
+
 /* Modal Content/Box */
-#detail-content, #reply-content, #menu-content, #menuDetail-content ,#reservation-content{
+#reply-content, #menu-content, #menuDetail-content ,#reservation-content, #accountInfo-content{
     background-color: #fefefe;
     margin: 15% auto; /* 15% from the top and centered */
     padding: 20px;
@@ -106,9 +115,9 @@ button {outline: none; border: 1px solid #555;}
     width: 30%; /* Could be more or less, depending on screen size */   
     position: relative;                    
 }
-#detail_close, #menu_close, #storeAdd_close ,#menuDetail_close,#reservation_close{position: absolute; right: 8px; top: 8px; transform:rotate(45deg);}
+#detail_close, #menu_close, #storeAdd_close ,#menuDetail_close,#reservation_close, #accountInfo_close {position: absolute; right: 8px; top: 8px; transform:rotate(45deg);}
 .btns {text-align: center; padding-top: 20px;}
-#updateBtn,#menuUpdateBtn, #menuPicUpdateBtn {display: none;}
+#updateBtn,#menuUpdateBtn, #menuPicUpdateBtn, #accountModifyCompleteBtn {display: none;}
 
 
 /* 사진 업로드 수정 부분 css */
@@ -127,5 +136,12 @@ button {outline: none; border: 1px solid #555;}
 .member-check-table > table {border-collapse: collapse; border-spacing: 0; width: 100%;}
 .table-col td {padding: 14px 30px; border-bottom: 1px solid #ddd; font-size: 12px;}
 .table-col > td:first-child {border-right: 1px solid #ddd; background-color: #eef1f8; font-weight: bold;}
-   
-   
+
+
+/* 헤더 디자인 */
+.top-navi > ul > li {cursor: pointer; transition : all 0.5s;}
+.top-navi > ul > li:hover {color: yellow;}
+
+/* 개인정보 수정 모달창 디자인 */
+.gender-frame, .type-frame {display: none;}
+

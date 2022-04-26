@@ -25,21 +25,21 @@ public class AccountController {
 	AccountSVC service;
 	
     //ajax 濡쒓렇�씤 泥섎━ 
-	@RequestMapping("/ajaxlogin")
-	public String loginCheck(AccountDto dto,HttpSession session) {
-		
-		boolean result = service.loginCheck(dto, session);
-		System.out.println("id" +"--------"+ session.getAttribute("id"));
-		if(result) {
-			System.out.println("status" +"--------"+ dto.getCUST_STATUS());
-			System.out.println("id2"  +"--------"+ dto.getCUST_ID());
-			System.out.println("pw" +"--------"+ dto.getCUST_PW());
-			
-		}else {	
-		}
-		
-		return "ajaxlogin";
-	}
+//	@RequestMapping("/ajaxlogin")
+//	public String loginCheck(AccountDto dto,HttpSession session) {
+//		
+//		boolean result = service.loginCheck(dto, session);
+//		System.out.println("id" +"--------"+ session.getAttribute("id"));
+//		if(result) {
+//			System.out.println("status" +"--------"+ dto.getCUST_STATUS());
+//			System.out.println("id2"  +"--------"+ dto.getCUST_ID());
+//			System.out.println("pw" +"--------"+ dto.getCUST_PW());
+//			
+//		}else {	
+//		}
+//		
+//		return "ajaxlogin";
+//	}
  
     //濡쒓렇�븘�썐 泥섎━ 
     @RequestMapping(value="logout.do", method=RequestMethod.POST)
@@ -57,20 +57,20 @@ public class AccountController {
 	}
     
     //�븘�씠�뵒 李얘린 
-    @RequestMapping(value="/IdCheck", method=RequestMethod.POST)
-    @ResponseBody
-	public String IdCheck(HttpServletResponse response, @RequestParam("CUST_PHNO") String CUST_PHNO, Model m) throws Exception{
-    	
-		m.addAttribute("id", service.IdCheck(response, CUST_PHNO));
-		return "IdCheck";
-	}
-    
-    //鍮꾨�踰덊샇 李얘린 
-    @RequestMapping(value="/PwChange", method=RequestMethod.POST)
-    @ResponseBody
-    public void PwChange(HttpServletResponse response, @ModelAttribute AccountDto dto) throws IOException {
-    	service.PwChange(response, dto);
- 
-    }
+//    @RequestMapping(value="/IdCheck", method=RequestMethod.POST)
+//    @ResponseBody
+//	public String IdCheck(HttpServletResponse response, @RequestParam("CUST_PHNO") String CUST_PHNO, Model m) throws Exception{
+//    	
+//		m.addAttribute("id", service.IdCheck(response, CUST_PHNO));
+//		return "IdCheck";
+//	}
+//    
+//    //鍮꾨�踰덊샇 李얘린 
+//    @RequestMapping(value="/PwChange", method=RequestMethod.POST)
+//    @ResponseBody
+//    public void PwChange(HttpServletResponse response, @ModelAttribute AccountDto dto) throws IOException {
+//    	service.PwChange(response, dto);
+// 
+//    }
 }
 

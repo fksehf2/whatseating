@@ -70,8 +70,8 @@ public class AccountDAO {
 		return deleteResult;
 	}
 	
-	public int userUpdate(String CUST_ID) {
-		int updateResult = session.update( "mappers.userMapper.userModify", CUST_ID);
+	public int userUpdate(AccountDto accountDTO) {
+		int updateResult = session.update( "mappers.userMapper.userModify", accountDTO);
 		return updateResult;
 	}
 	
@@ -79,6 +79,24 @@ public class AccountDAO {
 	public int userIdCheck(String CUST_ID) {
 		int idCheck = session.selectOne("mappers.userMapper.userIdCheck",CUST_ID);
 		return idCheck;
+	}
+	
+	//아이디 더블 체크
+	public int iddbCheck(String CUST_ID) {
+		int iddbCheck = session.selectOne("mappers.userMapper.iddbCheck",CUST_ID);
+		return iddbCheck;
+	}
+	
+	//로그인
+	public String login(String CUST_ID) {
+		String login = session.selectOne("mappers.userMapper.login",CUST_ID);
+		return login;
+	}
+	
+	//회원 서비스 체크
+	public String typeCheck(String CUST_ID) {
+		String typeCheck = session.selectOne("mappers.userMapper.typeCheck",CUST_ID);
+		return typeCheck;
 	}
 
 
