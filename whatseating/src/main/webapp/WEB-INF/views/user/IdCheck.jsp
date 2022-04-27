@@ -12,13 +12,13 @@
 <script>
 function swalSuccess(seq){
 	Swal.fire({
-		title: '임시 비밀번호를 발송하였습니다.',
-		icon: 'success',
-		confirmButtonColor: '#198754',
+		title: '회원님의 아이디는 "${id }"입니다.',
+		icon: 'warning',
+		confirmButtonColor: '#e3205a',
 		confirmButtonText: '확인'
 	}).then((result) => {
 		if (result.value) {
-			location.href="${pageContext.request.contextPath}/home.do";
+			location.href="${pageContext.request.contextPath}/user/loginform.do";
 	  }
 	})
 }

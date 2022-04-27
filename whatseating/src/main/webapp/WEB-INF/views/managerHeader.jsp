@@ -27,7 +27,7 @@
         <div class="top-navi">
             <ul>
                 <li><a href="#"><c:out value="${CUST_ID}" /></a></li>
-                <li><a href="#" id="logoutBox">로그아웃</a></li>
+                <li><a class="btn btn-danger btn-sm m-2" id="logoutBtn" onclick="logout();">로그아웃</a>
                 <li><a href="#">결제내역</a></li>
             </ul>
         </div>
