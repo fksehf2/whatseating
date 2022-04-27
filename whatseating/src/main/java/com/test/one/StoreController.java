@@ -1,15 +1,12 @@
 package com.test.one;
 
-import java.io.IOException;
+
 import java.io.PrintWriter;
-import java.net.http.HttpResponse;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -31,7 +28,7 @@ public class StoreController {
 	private StoreSVC storeSVC;
 	
 	
-	//¸®½ºÆ® ÀÌ¿ÜÀÇ °ª¸¸ º¯°æµÉ ¼ö ÀÖµµ·Ï ajax¸¦ ÅëÇØ º¸¿©ÁÙ ¼ö ÀÖµµ·Ï ÇÔ
+	//ï¿½ï¿½ï¿½ï¿½Æ® ï¿½Ì¿ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Öµï¿½ï¿½ï¿½ ajaxï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Öµï¿½ï¿½ï¿½ ï¿½ï¿½
 	@ResponseBody
 	@RequestMapping(value="reservation", method = RequestMethod.GET)
 	public Map<String, Object> reservation(@RequestParam(value = "ST_CODE") int ST_CODE) {
@@ -44,7 +41,7 @@ public class StoreController {
 		return map;
 	}
 	
-	//¸®½ºÆ®¸¦ ajax·Î ºÒ·¯¿Ã ¼ö ÀÖµµ·Ï ÇÔ
+	//ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ajaxï¿½ï¿½ ï¿½Ò·ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Öµï¿½ï¿½ï¿½ ï¿½ï¿½
 	@ResponseBody
 	@RequestMapping(value="storeList", produces = "application/json; charset=utf-8")
 	public Map<String, Object> main(@RequestParam("id") String ST_MANAGER) {
@@ -58,14 +55,14 @@ public class StoreController {
 		return map;
 	}
 	
-	//¸ÞÀÎ ÆäÀÌÁö //¸ÅÀå ¸®½ºÆ®
+	//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ®
 	@RequestMapping(value="main")
 	public String main() {
 		
 		return "managerIndex";
 	}
 	
-	//¸ÅÀå »ó¼¼º¸±â
+	//ï¿½ï¿½ï¿½ï¿½ ï¿½ó¼¼ºï¿½ï¿½ï¿½
 	@RequestMapping(value="reservationDetail")
 	public String reservationDetail(Model model, @RequestParam("ST_CODE") int ST_CODE) {
 		
@@ -74,7 +71,7 @@ public class StoreController {
 		return "store_reservationDetail";
 	}
 	
-	//¸ÅÀå µî·Ï
+	//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
 	@ResponseBody
 	@RequestMapping(value="storeRegister")
 	public Map<String, Object> reservationDetail(@ModelAttribute StoreDTO storeDTO) {
@@ -83,29 +80,29 @@ public class StoreController {
 		
 		int insertResult = storeSVC.storeRegister(storeDTO);
 		if(insertResult == 1) {
-			System.out.println("storeRegister ¼º°ø");
+			System.out.println("storeRegister ï¿½ï¿½ï¿½ï¿½");
 			map.put("insertResult", 1);
 			
 		} else {
-			System.out.println("storeRegister ½ÇÆÐ");
+			System.out.println("storeRegister ï¿½ï¿½ï¿½ï¿½");
 			map.put("insertResult", 0);
 		}
 		return map;
 	}
 	
-	//¸ÅÀå ¼öÁ¤ (ajax Åë½Å)
+	//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ (ajax ï¿½ï¿½ï¿½)
 	@ResponseBody
 	@RequestMapping(value="storeModify")
 	public String storeModify(@ModelAttribute StoreDTO storeDTO, HttpServletResponse response) throws Exception{
 		
 		int updateResult = storeSVC.storeModify(storeDTO);
 		if(updateResult == 1) {
-			System.out.println("storeupdate ¼º°ø");
+			System.out.println("storeupdate ï¿½ï¿½ï¿½ï¿½");
 			response.setContentType("text/html; charset=UTF-8");
 			PrintWriter out = response.getWriter();
 			out.println("1");
 		} else {
-			System.out.println("storeupdate ½ÇÆÐ");
+			System.out.println("storeupdate ï¿½ï¿½ï¿½ï¿½");
 			response.setContentType("text/html; charset=UTF-8");
 			PrintWriter out = response.getWriter();
 			out.println("0");
@@ -113,7 +110,7 @@ public class StoreController {
 		return null;
 	}
 	
-	//¸ÅÀå »èÁ¦ (ajax Åë½Å)
+	//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ (ajax ï¿½ï¿½ï¿½)
 		@ResponseBody
 		@RequestMapping(value="storeDelete")
 		public Map<String, Object> storeModify(@RequestParam("ST_CODE") int ST_CODE){

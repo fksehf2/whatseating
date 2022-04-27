@@ -23,7 +23,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.test.one.Service.PlanService;
+import com.test.one.Service.PlanSVC;
 import com.test.one.Vo.PlanDto;
 
 @Controller
@@ -32,15 +32,15 @@ public class PlanController {
 	private static final org.slf4j.Logger logger = LoggerFactory.getLogger(PlanController.class);
 
 	@Autowired
-	private PlanService service;
+	private PlanSVC service;
 
-	@RequestMapping("/store/test")
+	@RequestMapping("user/storeList")
 	public String GetStoreList(HttpServletRequest request) {
 
 		service.storeList(request);
 
-		System.out.println("storeList 吏꾩엯");
-		return "store/test";
+		System.out.println("storeList 진입");
+		return "user/storeList";
 	}
 
 	/*
@@ -78,17 +78,31 @@ public class PlanController {
 		return list;
 	}
 
-	@RequestMapping("/api/detail") 
+	@RequestMapping("store/modal") 
 	@ResponseBody
 	public List<Map<String, Object>> GetdetailList2(Map<String, Object>map, HttpServletRequest request) { 
-		List<Map<String, Object>> detail=service.GetdetailList2(map); 
+		List<Map<String, Object>> detail=service.GetdetailList2(map);
 		//Set<Map<String, Object>> detail2 = newHashSet<Map<String, Object>>(detail);
 
-		System.out.println("AJAX" +"--------"+ detail.get(4).get("ST_NAME"));
+		System.out.println("AJAX" +"--------"+ detail.get(1).get("ST_NAME"));
 		logger.info("허허허");
 		return detail;
 
 	}
+	
+	/*
+	 * @RequestMapping("/api/detail")
+	 * 
+	 * @ResponseBody public List<Map<String, Object>> GetdetailList3(Map<String,
+	 * Object>map, HttpServletRequest request, @PathVariable String ST_CODE) {
+	 * List<Map<String, Object>> detail=service.GetdetailList2(map, ST_CODE);
+	 * //Set<Map<String, Object>> detail2 = newHashSet<Map<String, Object>>(detail);
+	 * 
+	 * System.out.println("AJAX" +"--------"+ detail.get(4).get("ST_NAME"));
+	 * logger.info("..?"); return detail;
+	 * 
+	 * }
+	 */
 
 	
 }

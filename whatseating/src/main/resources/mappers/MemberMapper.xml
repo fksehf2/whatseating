@@ -4,16 +4,15 @@
 <mapper namespace="member">
 
 	<select id ="getData"  parameterType="String" resultType="accountDTO">
-	  SELECT CUST_ID, CUST_EMAIL, CUST_EMAIL2
+	  SELECT CUST_ID, CUST_EMAIL, CUST_EMAIL2, CUST_TYPE, CUST_PW
       FROM ACCOUNT_DATA
       WHERE CUST_ID=#{CUST_ID}
 	</select>
 	
-<select id="loginCheck" resultType="String">
-		<![CDATA[
-			SELECT count(*) FROM ACCOUNT_DATA
-			WHERE CUST_ID = #{CUST_ID} AND CUST_PW = #{CUST_PW}
-		]]>
+	<select id="loginCheck" resultType="accountDTO">
+			SELECT CUST_ID
+			FROM ACCOUNT_DATA
+			WHERE CUST_ID = #{CUST_ID} AND CUST_PW = #{CUST_PW} AND CUST_TYPE =#{CUST_TYPE}
 	</select>
 	
 	<select id="findId" resultType="String">

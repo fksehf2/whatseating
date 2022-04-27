@@ -14,7 +14,7 @@
 			      </div>
 			      <div class="modal-body" id="modalbody">
 				  <ul class="list-group list-group-horizontal">
-					  <li class="list-group-item" id="store_name">소개: </li>
+					  <li class="list-group-item" id="store_name"></li>
 				  </ul>
 				  <ul class="list-group list-group-horizontal-sm">
 					  <li class="list-group-item" id="store_content">A second item</li>

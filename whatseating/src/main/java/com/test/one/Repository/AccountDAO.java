@@ -1,12 +1,12 @@
 package com.test.one.Repository;
 
-import java.util.List;
+
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.test.one.Vo.AccountDto;
 import com.test.one.Vo.AccountDto;
 
 @Repository("accountDAO")
@@ -20,36 +20,19 @@ public class AccountDAO {
 		// TODO Auto-generated method stub
 		return session.selectOne("member.getData", CUST_ID);
 		}
-
-
-	
-	public AccountDto getData2(String CUST_EMAIL, String CUST_EMAIL2) {
-		// TODO Auto-generated method stub
-		return session.selectOne("member.getData", CUST_EMAIL);
-		}
-
-	
-	public List<AccountDto> getData3(AccountDto dto) {
-		// TODO Auto-generated method stub
-		return session.selectList("member.getData", dto);
-		}
-
-
-
 	
 	public boolean loginCheck(AccountDto dto) {
 		String name = session.selectOne("member.loginCheck",dto);
-		// 寃��깋�씠 �븞�릺硫� 0�쓣 諛섑솚�빐二쇨린 �븣臾몄뿉 0怨� 鍮꾧탳�빐�꽌 李몄씠硫� false, ��由щ㈃ true瑜� 諛섑솚
+		// 검색이 안되면 0을 반환해주기 때문에 0과 비교해서 참이면 false, 틀리면 true를 반환
 		return (Integer.parseInt(name)==0)?false:true;
 		}
-
-	
+	public AccountDto login(Map<String,Object> map) {
+		return session.selectOne("member.loginCheck", map);
+	}
 	public String FindId(String CUST_PHNO) {
 		// TODO Auto-generated method stub
 		return session.selectOne("member.findId", CUST_PHNO);
-		
 	}
-
 	
 	public int FindPw(AccountDto dto) {
 		return session.update("member.findPw", dto);

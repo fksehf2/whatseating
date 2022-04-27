@@ -34,8 +34,9 @@ h2 {
 </style>
 </head>
 <body>
+<br>
 <h2> 아이디&비밀번호 찾기</h2>
-
+<br>
 <div class="box" style="margin-top:20px;">
 			<div class="form-check">
 					<input class="form-check-input" type="radio" value="0" id="user" name="user" onclick="check(1);" checked>
@@ -48,12 +49,13 @@ h2 {
 				  <label class="form-check-label" for="findpw">
 			    	비밀번호 찾기
 			  	  </label>
-		   </div>  		
+		   </div>		     		
 	<div class="form">	   
 		<form action="/IdCheck" method="post">
 		  	<div id="find_user">
 			  	<input class="form-control" type="text" placeholder="핸드폰 번호를 입력하세요" id="CUST_PHNO" name="CUST_PHNO">
-			  	<button type="submit" id="submistId" class="btn btn-outline-info">아이디 찾기</button>
+			  	<br>
+			  	<button type="submit" id="submitId" class="btn btn-outline-info">아이디 찾기</button>
 		 	 </div>
 	  	</form>	
 	 	 <div id="find_pw" style="display:none">
@@ -66,6 +68,7 @@ h2 {
 				  <option value="@naver.com">@naver.com</option>
 				  <option value="@yahoo.com">@yahoo.com</option>
 				</select>
+				<br>
 				<button type="submit" id="submitEmail" class="btn btn-outline-info">비밀번호 찾기</button>
 			</form>
 		</div>
@@ -82,21 +85,5 @@ function check(num) {
 		document.getElementById("find_pw").style.display = "";
 	}
 }
-/* 	 $(function(){
-		$("#submitEmail").click(function(){
-			$.ajax({
-				url : "PwChange",
-				type : "POST",
-				data : {
-					id : $("#CUST_ID").val(),
-					email : $("#CUST_EMAIL").val()
-				},
-			success : function(result) {
-				alert(result);
-			},
-		})
-	});
-})  */
- 
 </script>
 </html>
